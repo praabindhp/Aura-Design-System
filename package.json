@@ -28,6 +28,7 @@
     "tokens:build": "npm run build --workspace @praabindh/aura-tokens",
     "tokens:check": "npm run tokens:build && npm run check --workspace @praabindh/aura-tokens",
     "typecheck": "npm run build:packages && npm run typecheck --workspaces --if-present",
+    "prelint": "npm run tokens:build",
     "lint": "eslint . --max-warnings=0",
     "lint:styles": "stylelint \"{apps,packages}/**/*.css\"",
     "lint:architecture": "node tooling/scripts/check-architecture.mjs",
