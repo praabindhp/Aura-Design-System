@@ -1,0 +1,97 @@
+.badge {
+  min-block-size: var(--aura-size-target-min);
+  padding-inline: var(--aura-space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--aura-space-1);
+  color: var(--aura-badge-content, var(--aura-brand-content));
+  border: 1px solid var(--aura-badge-border, var(--aura-brand-border-strong));
+  border-radius: var(--aura-radius-pill);
+  background: var(--aura-badge-bg, var(--aura-brand-soft));
+  font-size: var(--aura-font-size-label);
+  font-weight: 650;
+  line-height: var(--aura-line-height-compact);
+  white-space: nowrap;
+}
+
+.badge[data-tone="success"] {
+  --aura-badge-content: var(--aura-status-success-content);
+  --aura-badge-border: var(--aura-status-success-border);
+  --aura-badge-bg: var(--aura-status-success-bg);
+}
+
+.badge[data-tone="warning"] {
+  --aura-badge-content: var(--aura-status-warning-content);
+  --aura-badge-border: var(--aura-status-warning-border);
+  --aura-badge-bg: var(--aura-status-warning-bg);
+}
+
+.badge[data-tone="danger"] {
+  --aura-badge-content: var(--aura-status-danger-content);
+  --aura-badge-border: var(--aura-status-danger-border);
+  --aura-badge-bg: var(--aura-status-danger-bg);
+}
+
+.badge[data-tone="info"] {
+  --aura-badge-content: var(--aura-status-info-content);
+  --aura-badge-border: var(--aura-status-info-border);
+  --aura-badge-bg: var(--aura-status-info-bg);
+}
+
+.badge[data-tone="neutral"] {
+  --aura-badge-content: var(--aura-text-secondary);
+  --aura-badge-border: var(--aura-border-strong);
+  --aura-badge-bg: var(--aura-bg-subtle);
+}
+
+.progress {
+  inline-size: 100%;
+  block-size: 0.5rem;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--aura-radius-pill);
+  background: var(--aura-bg-disabled);
+  appearance: none;
+}
+
+.progress::-webkit-progress-bar {
+  background: var(--aura-bg-disabled);
+}
+
+.progress::-webkit-progress-value {
+  border-radius: var(--aura-radius-pill);
+  background: var(--aura-brand-action);
+}
+
+.progress::-moz-progress-bar {
+  border-radius: var(--aura-radius-pill);
+  background: var(--aura-brand-action);
+}
+
+.skeleton {
+  min-block-size: var(--aura-size-skeleton-line);
+  overflow: hidden;
+  border-radius: var(--aura-radius-sm);
+  background: var(--aura-bg-disabled);
+  animation: aura-pulse 1.4s ease-in-out infinite alternate;
+}
+
+.skeleton[data-size="md"] {
+  min-block-size: var(--aura-size-control);
+}
+
+.skeleton[data-size="lg"] {
+  min-block-size: var(--aura-space-16);
+}
+
+.skeleton[data-variant="circle"] {
+  inline-size: var(--aura-size-control);
+  block-size: var(--aura-size-control);
+  border-radius: var(--aura-radius-pill);
+}
+
+@keyframes aura-pulse {
+  to {
+    opacity: 0.52;
+  }
+}

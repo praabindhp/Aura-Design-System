@@ -1,0 +1,56 @@
+name: Documentation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "apps/docs/**"
+      - "packages/**"
+      - "package-lock.json"
+      - "package.json"
+      - ".github/workflows/docs.yml"
+
+concurrency:
+  group: documentation-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  storybook:
+    name: Build private Storybook
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22.14.0
+          cache: npm
+
+      - name: Use the locked npm CLI
+        run: npm install --global npm@11.18.0
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build publishable packages
+        run: npm run build:packages
+
+      - name: Build Storybook
+        run: npm run storybook:build
+
+      - name: Upload authenticated documentation artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: pads-storybook-${{ github.sha }}
+          path: apps/docs/storybook-static/
+          if-no-files-found: error
+          retention-days: 14

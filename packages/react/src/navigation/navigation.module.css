@@ -1,0 +1,134 @@
+.skipLink {
+  position: fixed;
+  z-index: var(--aura-z-toast);
+  inset-block-start: var(--aura-space-3);
+  inset-inline-start: var(--aura-space-3);
+  padding: var(--aura-space-3) var(--aura-space-4);
+  color: var(--aura-brand-on-solid);
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-brand-action);
+  box-shadow: var(--aura-shadow-md);
+  transform: translateY(calc(-100% - var(--aura-space-6)));
+  transition: transform var(--aura-motion-fast) var(--aura-motion-easing-standard);
+}
+
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+.breadcrumbs {
+  min-width: 0;
+  color: var(--aura-text-muted);
+  font-size: var(--aura-font-size-label);
+}
+
+.breadcrumbs ol {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--aura-space-2);
+  list-style: none;
+}
+
+.breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--aura-space-2);
+}
+
+.breadcrumbs a {
+  color: var(--aura-text-secondary);
+  text-underline-offset: 0.18em;
+}
+
+.breadcrumbs a:hover {
+  color: var(--aura-brand-content);
+}
+
+.current {
+  color: var(--aura-text-primary);
+  font-weight: 620;
+}
+
+.tabs {
+  min-width: 0;
+  display: grid;
+  gap: var(--aura-space-4);
+}
+
+.tabList {
+  min-width: 0;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--aura-space-1);
+  overflow-x: auto;
+  border-block-end: 1px solid var(--aura-border-decorative);
+  scrollbar-width: thin;
+}
+
+.tab {
+  position: relative;
+  min-block-size: var(--aura-size-control);
+  padding-inline: var(--aura-space-3);
+  flex: 0 0 auto;
+  color: var(--aura-text-secondary);
+  border: 0;
+  background: transparent;
+  font-size: var(--aura-font-size-label);
+  font-weight: 620;
+  cursor: pointer;
+}
+
+.tab::after {
+  position: absolute;
+  inset-inline: var(--aura-space-2);
+  inset-block-end: 0;
+  block-size: 2px;
+  border-radius: var(--aura-radius-pill);
+  background: transparent;
+  content: "";
+}
+
+.tab[aria-selected="true"] {
+  color: var(--aura-brand-content);
+}
+
+.tab[aria-selected="true"]::after {
+  background: var(--aura-brand-action);
+}
+
+.tab:disabled {
+  color: var(--aura-text-disabled);
+  cursor: not-allowed;
+}
+
+.tab:hover:not(:disabled) {
+  color: var(--aura-text-primary);
+  background: var(--aura-bg-hover);
+}
+
+.tabPanel {
+  min-width: 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pagination :global(.ant-pagination-item),
+.pagination :global(.ant-pagination-prev),
+.pagination :global(.ant-pagination-next) {
+  border-color: var(--aura-border-control);
+  background: var(--aura-bg-surface);
+}
+
+.pagination :global(.ant-pagination-item-active) {
+  border-color: var(--aura-brand-action);
+}
+
+.pagination :global(.ant-pagination-item-active a) {
+  color: var(--aura-brand-content);
+}

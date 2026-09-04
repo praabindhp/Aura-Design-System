@@ -1,0 +1,272 @@
+@layer aura-docs {
+  .docsCanvas {
+    min-block-size: 100vh;
+    padding: var(--aura-space-8);
+    color: var(--aura-text-primary);
+    background:
+      radial-gradient(circle at 100% 0%, var(--aura-brand-glow), transparent 32rem),
+      var(--aura-bg-app);
+  }
+
+  .docsCanvasFull {
+    padding: 0;
+  }
+
+  .docsPage {
+    inline-size: min(100%, var(--aura-container-xl));
+    margin-inline: auto;
+  }
+
+  .docsIntro {
+    display: grid;
+    gap: var(--aura-space-3);
+    max-inline-size: var(--aura-container-md);
+    margin-block-end: var(--aura-space-8);
+  }
+
+  .docsEyebrow {
+    color: var(--aura-brand-content);
+    font-size: var(--aura-font-size-label);
+    font-weight: var(--aura-font-weight-semibold);
+    text-transform: uppercase;
+  }
+
+  .docsGrid {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--aura-container-sm)), 1fr)
+    );
+    gap: var(--aura-space-4);
+  }
+
+  .docsGridCompact {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--aura-container-sm)), 1fr)
+    );
+    gap: var(--aura-space-3);
+  }
+
+  .docsFlow {
+    display: grid;
+    gap: var(--aura-space-6);
+  }
+
+  .docsSection {
+    display: grid;
+    gap: var(--aura-space-3);
+  }
+
+  .docsRow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--aura-space-3);
+  }
+
+  .docsForm {
+    display: grid;
+    gap: var(--aura-space-5);
+    max-inline-size: var(--aura-container-md);
+  }
+
+  .docsSwatch {
+    min-block-size: 8rem;
+    overflow: hidden;
+    border: var(--aura-border-width-thin) solid var(--aura-border-subtle);
+    border-radius: var(--aura-radius-lg);
+    background: var(--aura-bg-surface);
+    box-shadow: var(--aura-shadow-sm);
+  }
+
+  .docsSwatchColor {
+    block-size: var(--aura-space-12);
+    border-block-end: var(--aura-border-width-thin) solid var(--aura-border-subtle);
+  }
+
+  .docsSwatchBody {
+    display: grid;
+    gap: var(--aura-space-1);
+    padding: var(--aura-space-3);
+  }
+
+  .docsTokenBrandAction {
+    background: var(--aura-brand-action);
+  }
+
+  .docsTokenBrandSoft {
+    background: var(--aura-brand-soft);
+  }
+
+  .docsTokenSurface {
+    background: var(--aura-bg-surface);
+  }
+
+  .docsTokenSubtle {
+    background: var(--aura-bg-subtle);
+  }
+
+  .docsTokenSuccess {
+    background: var(--aura-status-success-bg);
+  }
+
+  .docsTokenWarning {
+    background: var(--aura-status-warning-bg);
+  }
+
+  .docsTokenDanger {
+    background: var(--aura-status-danger-bg);
+  }
+
+  .docsTokenInfo {
+    background: var(--aura-status-info-bg);
+  }
+
+  .docsScale {
+    display: grid;
+    gap: var(--aura-space-3);
+  }
+
+  .docsScaleItem {
+    display: grid;
+    grid-template-columns: minmax(7rem, 0.3fr) 1fr;
+    align-items: center;
+    gap: var(--aura-space-4);
+  }
+
+  .docsScaleBar {
+    block-size: var(--aura-space-4);
+    border-radius: var(--aura-radius-pill);
+    background: var(--aura-brand-action);
+  }
+
+  .docsScaleBar[data-size="1"] {
+    inline-size: var(--aura-space-4);
+  }
+
+  .docsScaleBar[data-size="2"] {
+    inline-size: var(--aura-space-8);
+  }
+
+  .docsScaleBar[data-size="3"] {
+    inline-size: var(--aura-space-12);
+  }
+
+  .docsScaleBar[data-size="4"] {
+    inline-size: var(--aura-space-16);
+  }
+
+  .docsDemoPanel {
+    padding: var(--aura-space-5);
+    border: var(--aura-border-width-thin) solid var(--aura-border-subtle);
+    border-radius: var(--aura-radius-lg);
+    background: var(--aura-bg-surface);
+  }
+
+  .docsMediaPlaceholder {
+    display: grid;
+    min-block-size: 12rem;
+    place-items: center;
+    color: var(--aura-brand-content);
+    background: linear-gradient(135deg, var(--aura-brand-soft), var(--aura-bg-subtle));
+  }
+
+  .docsSidebarNav {
+    display: grid;
+    gap: var(--aura-space-2);
+  }
+
+  .docsSidebarLink {
+    padding: var(--aura-space-3);
+    border-radius: var(--aura-radius-md);
+    color: var(--aura-text-secondary);
+    text-decoration: none;
+  }
+
+  .docsSidebarLink[aria-current="page"] {
+    color: var(--aura-brand-content);
+    background: var(--aura-brand-soft);
+  }
+
+  .docsShellContent {
+    padding: var(--aura-space-6);
+  }
+
+  .docsEditorPane {
+    min-block-size: 24rem;
+    padding: var(--aura-space-5);
+    background: var(--aura-bg-surface);
+  }
+
+  .docsPrimitiveBox,
+  .docsLayoutPane {
+    min-block-size: 9rem;
+    padding: var(--aura-space-5);
+    display: grid;
+    align-content: start;
+    gap: var(--aura-space-3);
+    border: var(--aura-border-width-thin) solid var(--aura-border-subtle);
+    border-radius: var(--aura-radius-lg);
+    background: var(--aura-bg-surface);
+  }
+
+  .docsConversationComposer {
+    padding: var(--aura-space-4);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: var(--aura-space-3);
+    border-block-start: var(--aura-border-width-thin) solid
+      var(--aura-border-decorative);
+    background: var(--aura-bg-elevated);
+    box-shadow: var(--aura-shadow-lg);
+  }
+
+  .docsResponsiveFrames {
+    display: grid;
+    grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+    gap: var(--aura-space-4);
+    align-items: start;
+  }
+
+  .docsFrame {
+    min-inline-size: 0;
+    overflow: hidden;
+    border: var(--aura-border-width-thin) solid var(--aura-border-strong);
+    border-radius: var(--aura-radius-lg);
+    background: var(--aura-bg-app);
+  }
+
+  .docsFrameLabel {
+    display: block;
+    padding: var(--aura-space-2) var(--aura-space-3);
+    color: var(--aura-text-muted);
+    font-size: var(--aura-font-size-caption);
+    background: var(--aura-bg-subtle);
+  }
+
+  .docsFrameBody {
+    container-type: inline-size;
+    padding: var(--aura-space-3);
+  }
+
+  @media (width <= 40rem) {
+    .docsCanvas {
+      padding: var(--aura-space-4);
+    }
+
+    .docsCanvasFull {
+      padding: 0;
+    }
+
+    .docsResponsiveFrames {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .docsConversationComposer {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

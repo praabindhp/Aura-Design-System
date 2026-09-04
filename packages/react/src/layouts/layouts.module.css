@@ -1,0 +1,199 @@
+.workspaceSurface {
+  position: relative;
+  min-width: 0;
+  min-height: 100%;
+  overflow-x: clip;
+  background:
+    radial-gradient(circle at 50% 100%, var(--aura-brand-glow), transparent 34%),
+    var(--aura-bg-app);
+  container: aura-workspace / inline-size;
+}
+
+.pageLayout {
+  min-width: 0;
+  padding: clamp(var(--aura-space-5), 4vw, var(--aura-space-10));
+  display: grid;
+  align-content: start;
+  gap: var(--aura-space-6);
+}
+
+.pageLayout[data-width="reading"] {
+  inline-size: min(100%, var(--aura-size-reading));
+  margin-inline: auto;
+}
+
+.pageLayout[data-width="wide"] {
+  inline-size: min(100%, var(--aura-container-xl));
+  margin-inline: auto;
+}
+
+.dashboardLayout {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 0.72fr);
+  align-items: start;
+  gap: var(--aura-space-5);
+}
+
+.dashboardMain,
+.dashboardAside {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: var(--aura-space-5);
+}
+
+.splitPane {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  overflow: hidden;
+  border: 1px solid var(--aura-border-subtle);
+  border-radius: var(--aura-radius-lg);
+  background: var(--aura-bg-surface);
+}
+
+.splitPane > * {
+  min-width: 0;
+}
+
+.splitPane > * + * {
+  border-inline-start: 1px solid var(--aura-border-decorative);
+}
+
+.shell {
+  min-width: 0;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns:
+    var(--aura-shell-sidebar-width, var(--aura-size-sidebar-expanded))
+    minmax(0, 1fr);
+  background: var(--aura-bg-app);
+}
+
+.shell[data-collapsed="true"] {
+  --aura-shell-sidebar-width: var(--aura-size-sidebar-collapsed);
+}
+
+.desktopSidebar {
+  position: sticky;
+  z-index: var(--aura-z-sticky);
+  inset-block-start: 0;
+  block-size: 100dvh;
+  overflow: hidden;
+  border-inline-end: 1px solid var(--aura-border-decorative);
+  background: var(--aura-bg-sidebar);
+}
+
+.shellMain {
+  min-width: 0;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+}
+
+.shellHeader {
+  position: sticky;
+  z-index: var(--aura-z-sticky);
+  inset-block-start: 0;
+  min-width: 0;
+  min-block-size: var(--aura-size-header);
+  border-block-end: 1px solid var(--aura-border-decorative);
+  background: color-mix(in srgb, var(--aura-bg-app) 92%, transparent);
+  backdrop-filter: blur(var(--aura-overlay-blur));
+}
+
+.mobileMenu {
+  display: none;
+}
+
+.sidebar {
+  min-width: 0;
+  block-size: 100%;
+  padding: var(--aura-space-4);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: var(--aura-space-4);
+  color: var(--aura-text-primary);
+  background: var(--aura-bg-sidebar);
+}
+
+.sidebarNav {
+  min-width: 0;
+  overflow-y: auto;
+}
+
+.sidebarFooter {
+  min-width: 0;
+}
+
+.topBar {
+  min-width: 0;
+  min-block-size: var(--aura-size-header);
+  padding-inline: clamp(var(--aura-space-4), 3vw, var(--aura-space-6));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(12rem, 26rem) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--aura-space-4);
+}
+
+.topLeading,
+.topActions {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--aura-space-2);
+}
+
+.topActions {
+  justify-content: flex-end;
+}
+
+.topCenter {
+  min-width: 0;
+}
+
+@container aura-workspace (width < 64rem) {
+  .dashboardLayout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@container aura-workspace (width < 48rem) {
+  .splitPane {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .splitPane > * + * {
+    border-block-start: 1px solid var(--aura-border-decorative);
+    border-inline-start: 0;
+  }
+}
+
+@media (width <= 52rem) {
+  .shell {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .desktopSidebar {
+    display: none;
+  }
+
+  .mobileMenu {
+    display: inline-grid;
+  }
+
+  .topBar {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .topCenter {
+    display: none;
+  }
+}
+
+@media (width <= 32rem) {
+  .pageLayout {
+    padding: var(--aura-space-5) var(--aura-space-4) var(--aura-space-8);
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "name": "@praabindh/aura-testing",
+  "version": "1.0.0",
+  "description": "Testing helpers for consumers of Praabindh's Aura Design System.",
+  "author": "Praabindh, PRAABINDH CORP",
+  "license": "MIT",
+  "homepage": "https://github.com/praabindh/Aura-Design-System#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praabindh/Aura-Design-System.git",
+    "directory": "packages/testing"
+  },
+  "bugs": {
+    "url": "https://github.com/praabindh/Aura-Design-System/issues"
+  },
+  "type": "module",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node ../../tooling/scripts/clean-dist.mjs && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "axe-core": "4.13.0"
+  },
+  "peerDependencies": {
+    "@praabindh/aura-design-system": "^1.0.0",
+    "@testing-library/react": ">=16.0.0 <17.0.0",
+    "react": ">=19.0.0 <20.0.0",
+    "react-dom": ">=19.0.0 <20.0.0"
+  },
+  "devDependencies": {
+    "@praabindh/aura-design-system": "1.0.0",
+    "@testing-library/react": "16.3.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "engines": {
+    "node": ">=22.14"
+  }
+}

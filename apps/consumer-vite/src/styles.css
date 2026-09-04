@@ -1,0 +1,55 @@
+@layer consumer-fixture {
+  body {
+    margin: 0;
+    background: var(--aura-bg-app);
+  }
+
+  .consumerToolbar {
+    position: sticky;
+    z-index: var(--aura-z-sticky);
+    inset-block-start: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--aura-space-3);
+    padding: var(--aura-space-3) var(--aura-space-6);
+    border-block-end: var(--aura-border-width-thin) solid var(--aura-border-subtle);
+    background: var(--aura-bg-elevated);
+  }
+
+  .consumerMain {
+    min-block-size: 100vh;
+    padding: var(--aura-space-8) var(--aura-space-6);
+    background:
+      radial-gradient(circle at 100% 0%, var(--aura-brand-glow), transparent 30rem),
+      var(--aura-bg-app);
+  }
+
+  .consumerActions,
+  .consumerBrand {
+    display: flex;
+    align-items: center;
+    gap: var(--aura-space-3);
+  }
+
+  .consumerBrand {
+    min-block-size: 9rem;
+  }
+
+  .consumerBrand div {
+    display: grid;
+    gap: var(--aura-space-1);
+  }
+
+  .consumerBrand span {
+    color: var(--aura-text-muted);
+    font-size: var(--aura-font-size-caption);
+  }
+
+  @media (width <= 40rem) {
+    .consumerToolbar,
+    .consumerMain {
+      padding-inline: var(--aura-space-4);
+    }
+  }
+}

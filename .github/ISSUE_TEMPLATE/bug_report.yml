@@ -1,0 +1,101 @@
+name: Bug report
+description: Report a reproducible defect in a released PADS package or its documentation.
+title: "[Bug]: "
+labels:
+  - bug
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve PADS. Do not include credentials, private product data, or security-sensitive details. Use private vulnerability reporting for security issues.
+  - type: input
+    id: package
+    attributes:
+      label: Package
+      description: Which published package or documentation application is affected?
+      placeholder: "@praabindh/aura-design-system"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      description: Provide the exact installed version or commit.
+      placeholder: "1.2.3"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Include browser and version, operating system, React version, Node version, and input method where relevant.
+      placeholder: "Safari 17.6, macOS, React 19.2, keyboard"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Link a small repository or provide public-import code and deterministic steps.
+      placeholder: |
+        1. Render ...
+        2. Focus ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: Describe the documented or accessible behavior you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Describe what happened, including stable error text when available.
+    validations:
+      required: true
+  - type: dropdown
+    id: modes
+    attributes:
+      label: Appearance
+      multiple: true
+      options:
+        - Light
+        - Dark
+        - System
+        - Forced colors
+        - Reduced motion
+        - Not appearance-specific
+    validations:
+      required: true
+  - type: input
+    id: brand
+    attributes:
+      label: Brand context
+      description: Name the affected brand or state that all/default brands are affected.
+      placeholder: "CognAura dark, or all brands"
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility impact
+      description: Note keyboard, focus, screen-reader, contrast, zoom, motion, touch, or reflow impact.
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add sanitized screenshots, Storybook links, logs, or likely regression version.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched existing issues and release notes.
+          required: true
+        - label: My reproduction uses documented package entry points and contains no sensitive data.
+          required: true
+        - label: This is not a privately reportable security vulnerability.
+          required: true

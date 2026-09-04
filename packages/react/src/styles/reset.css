@@ -1,0 +1,24 @@
+@layer aura-reset {
+  :where(.aura-root, [data-aura-root]),
+  :where(.aura-root, [data-aura-root]) *,
+  :where(.aura-root, [data-aura-root]) *::before,
+  :where(.aura-root, [data-aura-root]) *::after {
+    box-sizing: border-box;
+  }
+
+  :where(.aura-root, [data-aura-root]) :is(h1, h2, h3, h4, p, figure, blockquote) {
+    margin: 0;
+  }
+
+  :where(.aura-root, [data-aura-root]) :is(button, input, textarea, select) {
+    color: inherit;
+    font: inherit;
+  }
+
+  :where(.aura-root, [data-aura-root]) img,
+  :where(.aura-root, [data-aura-root]) video,
+  :where(.aura-root, [data-aura-root]) canvas,
+  :where(.aura-root, [data-aura-root]) svg {
+    max-inline-size: 100%;
+  }
+}

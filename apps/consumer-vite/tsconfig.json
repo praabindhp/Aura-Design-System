@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "paths": {
+      "@praabindh/aura-charts": ["../../packages/charts/src/index.ts"],
+      "@praabindh/aura-design-system": ["../../packages/react/src/index.ts"],
+      "@praabindh/aura-rich-content": ["../../packages/rich-content/src/index.ts"],
+      "@praabindh/aura-tokens": ["../../packages/tokens/dist/index.d.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

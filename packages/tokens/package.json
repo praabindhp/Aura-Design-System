@@ -1,0 +1,56 @@
+{
+  "name": "@praabindh/aura-tokens",
+  "version": "1.0.0",
+  "description": "Canonical design tokens for Praabindh's Aura Design System.",
+  "license": "MIT",
+  "author": "Praabindh, PRAABINDH CORP",
+  "homepage": "https://github.com/praabindh/Aura-Design-System#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praabindh/Aura-Design-System.git",
+    "directory": "packages/tokens"
+  },
+  "bugs": {
+    "url": "https://github.com/praabindh/Aura-Design-System/issues"
+  },
+  "type": "module",
+  "sideEffects": [
+    "./dist/tokens.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./styles.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./ant-theme.json": "./dist/ant-theme.json",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node ../../tooling/scripts/clean-dist.mjs && node ./scripts/build.mjs",
+    "check": "node ./scripts/build.mjs --check",
+    "test": "node --test ./test/*.test.mjs",
+    "verify": "npm run build && npm run check && npm test"
+  },
+  "engines": {
+    "node": ">=22.14"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  }
+}

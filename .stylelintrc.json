@@ -1,0 +1,30 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "color-no-hex": true,
+    "declaration-no-important": true,
+    "custom-property-pattern": "^aura-[a-z][a-z0-9-]+$",
+    "selector-class-pattern": "^[a-z][a-zA-Z0-9-]+$",
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": ["global"]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["packages/tokens/dist/*.css"],
+      "rules": {
+        "color-no-hex": null,
+        "custom-property-pattern": null
+      }
+    },
+    {
+      "files": ["packages/react/src/styles/compat.css"],
+      "rules": {
+        "custom-property-pattern": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "name": "@praabindh/aura-design-system",
+  "version": "1.0.0",
+  "description": "Accessible React components, patterns, layouts, and templates for PRAABINDH CORP Aura products.",
+  "author": "Praabindh, PRAABINDH CORP",
+  "license": "MIT",
+  "homepage": "https://github.com/praabindh/Aura-Design-System#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praabindh/Aura-Design-System.git",
+    "directory": "packages/react"
+  },
+  "bugs": {
+    "url": "https://github.com/praabindh/Aura-Design-System/issues"
+  },
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles/index.css",
+    "./reset.css": "./dist/styles/reset.css",
+    "./compat.css": "./dist/styles/compat.css",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node ../../tooling/scripts/clean-dist.mjs && tsc -p tsconfig.build.json && cd ../.. && node tooling/scripts/copy-assets.mjs packages/react",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --root ../.. packages/react"
+  },
+  "dependencies": {
+    "@fontsource-variable/lexend": "5.2.8",
+    "@praabindh/aura-tokens": "1.0.0",
+    "antd": "6.6.0",
+    "lucide-react": "1.31.0"
+  },
+  "peerDependencies": {
+    "react": ">=19.0.0 <20.0.0",
+    "react-dom": ">=19.0.0 <20.0.0"
+  },
+  "devDependencies": {
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "engines": {
+    "node": ">=22.14"
+  }
+}

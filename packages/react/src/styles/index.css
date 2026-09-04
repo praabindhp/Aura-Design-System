@@ -1,0 +1,52 @@
+@import url("@fontsource-variable/lexend");
+@import url("@praabindh/aura-tokens/styles.css");
+@import url("./reset.css");
+
+@layer aura-base {
+  :where(.aura-root, [data-aura-root]) {
+    min-width: 0;
+    color: var(--aura-text-primary);
+    background: var(--aura-bg-app);
+    font-family: var(--aura-font-sans);
+    font-size: var(--aura-font-size-body);
+    line-height: var(--aura-line-height-body);
+    text-rendering: optimizelegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :where(.aura-root, [data-aura-root]) :focus-visible {
+    outline: var(--aura-focus-width) solid var(--aura-focus-stroke);
+    outline-offset: var(--aura-focus-offset);
+    box-shadow: 0 0 0 var(--aura-focus-halo-width) var(--aura-focus-halo);
+  }
+
+  :where(.aura-root, [data-aura-root]) ::selection {
+    color: var(--aura-brand-on-solid);
+    background: var(--aura-brand-action);
+  }
+
+  @media (pointer: coarse) {
+    :where(.aura-root, [data-aura-root]) :is(button, input, select, textarea) {
+      min-block-size: var(--aura-size-target-comfortable);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :where(.aura-root, [data-aura-root]),
+    :where(.aura-root, [data-aura-root]) *,
+    :where(.aura-root, [data-aura-root]) *::before,
+    :where(.aura-root, [data-aura-root]) *::after {
+      scroll-behavior: auto;
+      animation-duration: var(--aura-motion-reduced-duration);
+      animation-iteration-count: 1;
+      transition-duration: var(--aura-motion-reduced-duration);
+    }
+  }
+
+  @media (forced-colors: active) {
+    :where(.aura-root, [data-aura-root]) :focus-visible {
+      outline-color: Highlight;
+      box-shadow: none;
+    }
+  }
+}

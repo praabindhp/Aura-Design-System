@@ -1,0 +1,95 @@
+name: Component or token proposal
+description: Propose a reusable PADS capability supported by multiple product contexts.
+title: "[Proposal]: "
+labels:
+  - proposal
+  - design-system
+body:
+  - type: markdown
+    attributes:
+      value: |
+        PADS grows from demonstrated shared needs. Explain the user problem before prescribing a component API or visual treatment.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Who encounters the problem, in what workflow, and what is difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: contexts
+    attributes:
+      label: Shared product contexts
+      description: Describe at least two concrete contexts that need the same semantic and interaction contract.
+      placeholder: |
+        - VerbAura: ...
+        - CharterAura: ...
+    validations:
+      required: true
+  - type: textarea
+    id: existing
+    attributes:
+      label: Existing PADS composition considered
+      description: Which tokens, primitives, or patterns were considered, and why are they insufficient?
+    validations:
+      required: true
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Proposed responsibility
+      options:
+        - Token or foundation
+        - Primitive
+        - Composite
+        - Pattern
+        - Layout
+        - Template
+        - Optional chart capability
+        - Optional rich-content capability
+        - Unsure
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Proposed semantic contract
+      description: Outline data, slots, events, states, and product responsibilities without relying on Ant Design types.
+    validations:
+      required: true
+  - type: textarea
+    id: states
+    attributes:
+      label: States and responsive behavior
+      description: Cover loading, empty, error, disabled, read-only, selected, destructive, narrow, medium, and wide behavior as applicable.
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility model
+      description: Describe semantics, accessible name, keyboard interaction, focus, announcements, contrast, motion, zoom, and touch behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and tradeoffs
+      description: Include leaving the solution product-owned and composing existing components.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Supporting evidence
+      description: Add sanitized product references, research, prototypes, or screenshots. Screenshots are context, not implementation specifications.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: The proposal contains no product secrets, private data, or copied third-party assets.
+          required: true
+        - label: The capability can remain free of product routes, stores, services, and transport contracts.
+          required: true
+        - label: I reviewed the component and token standards.
+          required: true

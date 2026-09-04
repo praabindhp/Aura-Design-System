@@ -1,0 +1,216 @@
+.composerDock {
+  position: relative;
+  min-width: 0;
+  min-block-size: 10rem;
+  padding: var(--aura-space-4);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.composerDock::before {
+  position: absolute;
+  z-index: -1;
+  inset-inline: 8%;
+  inset-block-end: calc(-1 * var(--aura-space-8));
+  block-size: 9rem;
+  border-radius: var(--aura-radius-pill);
+  background: radial-gradient(
+    ellipse at center,
+    var(--aura-brand-glow),
+    transparent 72%
+  );
+  filter: blur(var(--aura-space-6));
+  content: "";
+  pointer-events: none;
+}
+
+.composerTrigger {
+  position: absolute;
+  inset-block-end: var(--aura-space-5);
+  inset-inline-start: 50%;
+  min-block-size: var(--aura-size-control-lg);
+  padding-inline: var(--aura-space-4);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--aura-space-2);
+  color: var(--aura-text-primary);
+  border: 1px solid var(--aura-brand-border-strong);
+  border-radius: var(--aura-radius-lg);
+  background: var(--aura-bg-elevated);
+  box-shadow: var(--aura-shadow-md);
+  font-weight: 650;
+  cursor: pointer;
+  transform: translateX(-50%);
+  transition:
+    opacity var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    transform var(--aura-motion-normal) var(--aura-motion-easing-standard),
+    visibility 0s linear 0s;
+}
+
+.composerTrigger:hover {
+  transform: translateX(-50%) translateY(calc(-1 * var(--aura-space-1)));
+}
+
+.composerSurface {
+  inline-size: min(100%, var(--aura-size-composer));
+  padding: var(--aura-space-3);
+  display: grid;
+  gap: var(--aura-space-2);
+  visibility: hidden;
+  opacity: 0;
+  border: 1px solid var(--aura-border-strong);
+  border-radius: var(--aura-radius-xl);
+  background: var(--aura-bg-elevated);
+  box-shadow: var(--aura-shadow-lg);
+  transform: translateY(var(--aura-space-6)) scale(0.98);
+  pointer-events: none;
+  transition:
+    visibility 0s linear var(--aura-motion-normal),
+    opacity var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    transform var(--aura-motion-normal) var(--aura-motion-easing-standard);
+}
+
+.composerSurface:focus-within,
+.composerDock[data-expanded="true"] .composerSurface {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+.composerDock[data-expanded="true"] .composerTrigger {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(-50%) translateY(var(--aura-space-4));
+  pointer-events: none;
+}
+
+.composerEditor {
+  min-width: 0;
+}
+
+.composerFooter {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--aura-space-2);
+}
+
+.composerControls,
+.composerAction {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--aura-space-2);
+}
+
+.contextPalette {
+  min-width: 0;
+  max-block-size: min(24rem, 60dvh);
+  padding: var(--aura-space-2);
+  overflow-y: auto;
+  color: var(--aura-text-primary);
+  border: 1px solid var(--aura-border-strong);
+  border-radius: var(--aura-radius-lg);
+  background: var(--aura-bg-elevated);
+  box-shadow: var(--aura-shadow-lg);
+}
+
+.contextEmpty {
+  padding: var(--aura-space-6);
+  color: var(--aura-text-secondary);
+  text-align: center;
+}
+
+.contextOption {
+  inline-size: 100%;
+  min-block-size: var(--aura-size-control-lg);
+  padding: var(--aura-space-3);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--aura-space-3);
+  color: var(--aura-text-primary);
+  border: 1px solid transparent;
+  border-radius: var(--aura-radius-md);
+  background: transparent;
+  text-align: start;
+  cursor: pointer;
+}
+
+.contextOption:disabled {
+  color: var(--aura-text-disabled);
+  cursor: not-allowed;
+}
+
+.contextOption:hover:not(:disabled),
+.contextOption[data-highlighted="true"] {
+  border-color: var(--aura-brand-border-strong);
+  background: var(--aura-brand-soft);
+}
+
+.contextIcon {
+  inline-size: var(--aura-size-control);
+  block-size: var(--aura-size-control);
+  display: grid;
+  place-items: center;
+  color: var(--aura-brand-content);
+  border: 1px solid var(--aura-brand-border-strong);
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-brand-soft);
+}
+
+.contextContent {
+  min-width: 0;
+  display: grid;
+  gap: var(--aura-space-1);
+}
+
+.contextContent strong {
+  overflow: hidden;
+  font-size: var(--aura-font-size-body);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contextContent small {
+  overflow: hidden;
+  color: var(--aura-text-secondary);
+  font-size: var(--aura-font-size-caption);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contextCategory {
+  color: var(--aura-text-muted);
+  font-size: var(--aura-font-size-caption);
+}
+
+.commandBody {
+  display: grid;
+  gap: var(--aura-space-3);
+}
+
+@media (hover: none), (pointer: coarse), (width <= 48rem) {
+  .composerDock {
+    min-block-size: 12rem;
+    padding-inline: 0;
+  }
+
+  .composerTrigger {
+    display: none;
+  }
+
+  .composerSurface {
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}

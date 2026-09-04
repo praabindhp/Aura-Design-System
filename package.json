@@ -1,0 +1,83 @@
+{
+  "name": "praabindh-aura-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Praabindh's Aura Design System (PADS) — the visual and interaction foundation for PRAABINDH CORP Aura products.",
+  "author": "Praabindh, PRAABINDH CORP",
+  "license": "MIT",
+  "homepage": "https://github.com/praabindh/Aura-Design-System#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/praabindh/Aura-Design-System.git"
+  },
+  "bugs": {
+    "url": "https://github.com/praabindh/Aura-Design-System/issues"
+  },
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run tokens:build && npm run build --workspace @praabindh/aura-design-system && npm run build --workspace @praabindh/aura-charts && npm run build --workspace @praabindh/aura-rich-content && npm run build --workspace @praabindh/aura-testing && npm run build --workspace @praabindh/aura-consumer-vite",
+    "build:packages": "npm run tokens:build && npm run build --workspace @praabindh/aura-design-system && npm run build --workspace @praabindh/aura-charts && npm run build --workspace @praabindh/aura-rich-content && npm run build --workspace @praabindh/aura-testing",
+    "clean": "node tooling/scripts/clean.mjs",
+    "dev": "npm run storybook",
+    "storybook": "npm run storybook --workspace @praabindh/aura-docs",
+    "storybook:build": "npm run build --workspace @praabindh/aura-docs",
+    "tokens:build": "npm run build --workspace @praabindh/aura-tokens",
+    "tokens:check": "npm run tokens:build && npm run check --workspace @praabindh/aura-tokens",
+    "typecheck": "npm run build:packages && npm run typecheck --workspaces --if-present",
+    "lint": "eslint . --max-warnings=0",
+    "lint:styles": "stylelint \"{apps,packages}/**/*.css\"",
+    "lint:architecture": "node tooling/scripts/check-architecture.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:browser": "playwright test",
+    "bundle:check": "node tooling/scripts/check-bundles.mjs",
+    "package:check": "node tooling/scripts/check-packages.mjs",
+    "security:scan": "node tooling/scripts/check-secrets.mjs",
+    "audit:dependencies": "npm audit --omit=dev --audit-level=high",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish",
+    "verify": "npm run format:check && npm run lint && npm run lint:styles && npm run lint:architecture && npm run security:scan && npm run tokens:check && npm run typecheck && npm run test:coverage && npm run build && npm run bundle:check && npm run storybook:build && npm run package:check && npm run test:browser && npm run audit:dependencies"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
+    "@axe-core/playwright": "4.13.0",
+    "@changesets/cli": "3.0.1",
+    "@eslint/js": "10.0.1",
+    "@playwright/test": "1.62.1",
+    "@storybook/addon-a11y": "10.5.9",
+    "@storybook/react-vite": "10.5.9",
+    "@testing-library/jest-dom": "7.0.1",
+    "@testing-library/react": "16.3.2",
+    "@testing-library/user-event": "14.6.4",
+    "@types/node": "24.3.0",
+    "@types/react": "19.2.18",
+    "@types/react-dom": "19.2.4",
+    "@vitejs/plugin-react": "6.0.5",
+    "@vitest/coverage-v8": "4.1.10",
+    "eslint": "10.8.1",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.11.0",
+    "jsdom": "26.1.0",
+    "prettier": "3.9.6",
+    "publint": "0.3.23",
+    "storybook": "10.5.9",
+    "stylelint": "17.14.1",
+    "stylelint-config-standard": "40.0.0",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.67.0",
+    "vite": "8.2.1",
+    "vitest": "4.1.10"
+  },
+  "engines": {
+    "node": ">=22.14",
+    "npm": ">=11.18.0"
+  },
+  "packageManager": "npm@11.18.0"
+}

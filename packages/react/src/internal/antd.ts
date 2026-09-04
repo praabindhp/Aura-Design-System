@@ -1,0 +1,10 @@
+export { default as AntApp } from "antd/es/app";
+export { default as AntConfigProvider } from "antd/es/config-provider";
+export { default as AntDrawer } from "antd/es/drawer";
+export { default as AntModal } from "antd/es/modal";
+export { default as AntPagination } from "antd/es/pagination";
+export { default as AntPopconfirm } from "antd/es/popconfirm";
+export { default as AntSelect } from "antd/es/select";
+export { default as AntTooltip } from "antd/es/tooltip";
+export { default as antTheme } from "antd/es/theme";
+export type { ThemeConfig as AntThemeConfig } from "antd/es/config-provider/context";

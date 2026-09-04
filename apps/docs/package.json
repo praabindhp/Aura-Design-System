@@ -1,0 +1,31 @@
+{
+  "name": "@praabindh/aura-docs",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Private Storybook documentation for Praabindh's Aura-Design-System.",
+  "type": "module",
+  "scripts": {
+    "build": "storybook build",
+    "storybook": "storybook dev --port 6006 --no-open",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@praabindh/aura-charts": "1.0.0",
+    "@praabindh/aura-design-system": "1.0.0",
+    "@praabindh/aura-rich-content": "1.0.0",
+    "@praabindh/aura-tokens": "1.0.0",
+    "lucide-react": "1.31.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "10.5.9",
+    "@storybook/addon-docs": "10.5.9",
+    "@storybook/react-vite": "10.5.9",
+    "storybook": "10.5.9",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=22.14"
+  }
+}

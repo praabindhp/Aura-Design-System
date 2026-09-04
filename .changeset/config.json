@@ -1,0 +1,19 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [
+    [
+      "@praabindh/aura-design-system",
+      "@praabindh/aura-tokens",
+      "@praabindh/aura-charts",
+      "@praabindh/aura-rich-content",
+      "@praabindh/aura-testing"
+    ]
+  ],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

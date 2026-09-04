@@ -1,0 +1,93 @@
+name: Release restricted packages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: pads-release
+  cancel-in-progress: false
+
+permissions: {}
+
+jobs:
+  verify:
+    name: Verify release candidate
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+    steps:
+      - name: Check out protected branch
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Use Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22.14.0
+          cache: npm
+
+      - name: Use the locked npm CLI
+        run: npm install --global npm@11.18.0
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Install supported browser engines
+        run: npx --no-install playwright install --with-deps chromium firefox webkit
+
+      - name: Run the full verification gate
+        run: npm run verify
+
+  release:
+    name: Version or publish
+    needs: verify
+    if: >-
+      github.repository == 'praabindh/Aura-Design-System' &&
+      vars.PADS_RELEASE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment: npm-release
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+    steps:
+      - name: Check out protected branch
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Use Node.js and the restricted registry scope
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22.14.0
+          registry-url: https://registry.npmjs.org
+          scope: "@praabindh"
+          package-manager-cache: false
+
+      - name: Use the locked npm CLI
+        run: npm install --global npm@11.18.0
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build verified publishable packages
+        run: npm run build:packages
+
+      - name: Recheck packed release artifacts
+        run: npm run package:check
+
+      - name: Create version pull request or publish immutable packages
+        uses: changesets/action@198f833dd7d863100ea6e28967bc9a9fdefadb0a # v2.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          version-script: npm run version-packages
+          publish-script: npm run release
+          commit-message: "chore(release): version PADS packages"
+          pr-title: "chore(release): version PADS packages"
+          create-github-releases: true

@@ -1,0 +1,10 @@
+# Praabindh stewards PADS on behalf of PRAABINDH CORP.
+* @praabindh
+
+# These contracts always require explicit owner review.
+/packages/tokens/ @praabindh
+/packages/react/ @praabindh
+/docs/adr/ @praabindh
+/.github/ @praabindh
+/AGENTS.md @praabindh
+/SECURITY.md @praabindh

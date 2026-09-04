@@ -1,0 +1,119 @@
+.tableRegion {
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--aura-border-subtle);
+  border-radius: var(--aura-radius-lg);
+  background: var(--aura-bg-surface);
+  scrollbar-width: thin;
+}
+
+.table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-label);
+}
+
+.caption {
+  padding: var(--aura-space-4);
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-body);
+  font-weight: 650;
+  text-align: start;
+}
+
+.table th,
+.table td {
+  padding: var(--aura-space-3) var(--aura-space-4);
+  border-block-end: 1px solid var(--aura-border-decorative);
+  text-align: start;
+  vertical-align: middle;
+}
+
+.table th {
+  color: var(--aura-text-secondary);
+  background: var(--aura-bg-subtle);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.table tr:last-child td {
+  border-block-end: 0;
+}
+
+.table tbody tr:hover {
+  background: var(--aura-bg-hover);
+}
+
+.table [data-align="end"] {
+  text-align: end;
+}
+
+.table [data-align="center"] {
+  text-align: center;
+}
+
+.descriptionList {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--aura-description-columns, 1), minmax(0, 1fr));
+  gap: var(--aura-space-4);
+}
+
+.descriptionList[data-columns="2"] {
+  --aura-description-columns: 2;
+}
+
+.descriptionList[data-columns="3"] {
+  --aura-description-columns: 3;
+}
+
+.descriptionItem {
+  min-width: 0;
+  padding: var(--aura-space-3);
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-bg-subtle);
+}
+
+.descriptionItem dt {
+  color: var(--aura-text-muted);
+  font-size: var(--aura-font-size-caption);
+}
+
+.descriptionItem dd {
+  margin: var(--aura-space-1) 0 0;
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-body);
+  font-weight: 620;
+}
+
+.stat {
+  min-width: 0;
+  display: grid;
+  gap: var(--aura-space-2);
+}
+
+.statLabel {
+  color: var(--aura-text-secondary);
+  font-size: var(--aura-font-size-label);
+}
+
+.statValue {
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-display);
+  font-weight: 680;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.statHint {
+  color: var(--aura-text-muted);
+  font-size: var(--aura-font-size-caption);
+}
+
+@container (width < 36rem) {
+  .descriptionList[data-columns="2"],
+  .descriptionList[data-columns="3"] {
+    --aura-description-columns: 1;
+  }
+}

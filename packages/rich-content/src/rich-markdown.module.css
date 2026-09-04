@@ -1,0 +1,336 @@
+.content {
+  min-inline-size: 0;
+  color: var(--aura-color-foreground-primary);
+  font-family: var(--aura-font-sans);
+  font-size: var(--aura-font-size-body);
+  line-height: var(--aura-line-height-body);
+  overflow-wrap: anywhere;
+}
+
+.headingOne,
+.headingTwo,
+.headingThree,
+.headingFour {
+  margin: var(--aura-space-8) 0 var(--aura-space-3);
+  color: var(--aura-color-foreground-primary);
+  font-weight: var(--aura-font-weight-bold);
+  line-height: var(--aura-line-height-heading);
+  text-wrap: balance;
+}
+
+.headingOne {
+  font-size: var(--aura-font-size-display);
+}
+
+.headingTwo {
+  font-size: var(--aura-font-size-title);
+}
+
+.headingThree {
+  font-size: var(--aura-font-size-title-sm);
+}
+
+.headingFour {
+  font-size: var(--aura-font-size-body-lg);
+}
+
+.headingOne:first-child,
+.headingTwo:first-child,
+.headingThree:first-child,
+.headingFour:first-child {
+  margin-block-start: 0;
+}
+
+.paragraph {
+  margin: 0 0 var(--aura-space-5);
+  text-wrap: pretty;
+}
+
+.content ul,
+.content ol {
+  padding-inline-start: var(--aura-space-8);
+  margin: 0 0 var(--aura-space-5);
+}
+
+.content li {
+  padding-inline-start: var(--aura-space-1);
+  margin-block: var(--aura-space-2);
+}
+
+.content li::marker {
+  color: var(--aura-color-brand-foreground);
+  font-weight: var(--aura-font-weight-semibold);
+}
+
+.content input[type="checkbox"] {
+  inline-size: var(--aura-space-4);
+  block-size: var(--aura-space-4);
+  margin-inline: 0 var(--aura-space-2);
+  accent-color: var(--aura-color-brand-action);
+}
+
+.content strong {
+  font-weight: var(--aura-font-weight-bold);
+}
+
+.link {
+  color: var(--aura-color-brand-foreground);
+  font-weight: var(--aura-font-weight-medium);
+  text-decoration-color: var(--aura-color-brand-border-strong);
+  text-decoration-thickness: var(--aura-border-width-thin);
+  text-underline-offset: var(--aura-space-1);
+}
+
+.link:hover {
+  color: var(--aura-color-brand-action-hover);
+  text-decoration-thickness: var(--aura-border-width-strong);
+}
+
+.link:focus-visible {
+  outline: var(--aura-focus-width) solid var(--aura-color-focus-stroke);
+  outline-offset: var(--aura-focus-offset);
+}
+
+.externalMark {
+  display: inline-block;
+  margin-inline-start: var(--aura-space-1);
+  font-size: var(--aura-font-size-caption);
+}
+
+.blockedLink,
+.imageOmitted {
+  color: var(--aura-color-foreground-secondary);
+  text-decoration: line-through;
+  text-decoration-color: var(--aura-status-danger-border);
+}
+
+.inlineCode {
+  padding: var(--aura-space-1) var(--aura-space-2);
+  color: var(--aura-color-code-inline-text);
+  background: var(--aura-color-code-inline-background);
+  border: var(--aura-border-width-thin) solid var(--aura-color-border-subtle);
+  border-radius: var(--aura-radius-sm);
+  font-family: var(--aura-font-mono);
+  font-size: var(--aura-font-size-label);
+  overflow-wrap: anywhere;
+}
+
+.codeBlock {
+  max-inline-size: 100%;
+  margin-block: var(--aura-space-6);
+  overflow: hidden;
+  background: var(--aura-color-code-background);
+  border: var(--aura-border-width-thin) solid var(--aura-color-border-subtle);
+  border-radius: var(--aura-radius-lg);
+}
+
+.codeHeader {
+  display: flex;
+  gap: var(--aura-space-3);
+  align-items: center;
+  justify-content: space-between;
+  min-block-size: var(--aura-size-control);
+  padding: var(--aura-space-2) var(--aura-space-4);
+  color: var(--aura-color-foreground-secondary);
+  background: var(--aura-color-code-header-background);
+  border-block-end: var(--aura-border-width-thin) solid var(--aura-color-border-subtle);
+}
+
+.codeLanguage {
+  overflow: hidden;
+  font-family: var(--aura-font-mono);
+  font-size: var(--aura-font-size-caption);
+  font-weight: var(--aura-font-weight-semibold);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.copyButton {
+  min-block-size: var(--aura-size-control-sm);
+  padding-inline: var(--aura-space-3);
+  color: var(--aura-color-control-foreground);
+  background: var(--aura-color-control-background);
+  border: var(--aura-border-width-thin) solid var(--aura-color-control-border);
+  border-radius: var(--aura-radius-md);
+  font: inherit;
+  font-size: var(--aura-font-size-label);
+  font-weight: var(--aura-font-weight-semibold);
+  cursor: pointer;
+}
+
+.copyButton:disabled {
+  color: var(--aura-color-control-foreground-disabled);
+  background: var(--aura-color-control-background-disabled);
+  border-color: var(--aura-color-control-border-disabled);
+  cursor: not-allowed;
+}
+
+.copyButton:focus-visible {
+  outline: var(--aura-focus-width) solid var(--aura-color-focus-stroke);
+  outline-offset: var(--aura-focus-offset);
+}
+
+.copyButton:hover:not(:disabled) {
+  color: var(--aura-color-brand-foreground);
+  background: var(--aura-color-control-background-hover);
+  border-color: var(--aura-color-control-border-hover);
+}
+
+.codePre {
+  max-block-size: var(--aura-size-rich-content-code-max);
+  padding: var(--aura-space-5);
+  margin: 0;
+  overflow: auto;
+  color: var(--aura-color-code-text);
+  background: var(--aura-color-code-background);
+  overscroll-behavior: contain;
+  tab-size: 2;
+}
+
+.codePre:focus-visible {
+  outline: var(--aura-focus-width) solid var(--aura-color-focus-stroke);
+  outline-offset: var(--aura-focus-offset);
+}
+
+.code {
+  font-family: var(--aura-font-mono);
+  font-size: var(--aura-font-size-label);
+  line-height: var(--aura-line-height-body);
+  white-space: pre;
+}
+
+.syntaxToken {
+  color: inherit;
+}
+
+.tokenKeyword {
+  color: var(--aura-color-code-keyword);
+}
+
+.tokenString {
+  color: var(--aura-color-code-string);
+}
+
+.tokenNumber {
+  color: var(--aura-color-code-number);
+}
+
+.tokenComment {
+  color: var(--aura-color-code-comment);
+  font-style: italic;
+}
+
+.tokenMeta {
+  color: var(--aura-status-info-content);
+}
+
+.tokenAddition {
+  color: var(--aura-status-success-content);
+  background: var(--aura-status-success-bg);
+}
+
+.tokenDeletion {
+  color: var(--aura-status-danger-content);
+  background: var(--aura-status-danger-bg);
+}
+
+.blockquote {
+  padding: var(--aura-space-4) var(--aura-space-5);
+  margin: var(--aura-space-6) 0;
+  color: var(--aura-color-foreground-secondary);
+  background: var(--aura-bg-subtle);
+  border-inline-start: var(--aura-border-width-strong) solid
+    var(--aura-color-brand-border-strong);
+  border-radius: 0 var(--aura-radius-md) var(--aura-radius-md) 0;
+}
+
+.blockquote > :last-child {
+  margin-block-end: 0;
+}
+
+.tableScroller {
+  max-inline-size: 100%;
+  margin-block: var(--aura-space-6);
+  overflow-x: auto;
+  border: var(--aura-border-width-thin) solid var(--aura-color-border-subtle);
+  border-radius: var(--aura-radius-lg);
+  overscroll-behavior-inline: contain;
+  scrollbar-gutter: stable;
+}
+
+.tableScroller:focus-visible {
+  outline: var(--aura-focus-width) solid var(--aura-color-focus-stroke);
+  outline-offset: var(--aura-focus-offset);
+}
+
+.table {
+  inline-size: max(100%, max-content);
+  border-spacing: 0;
+  border-collapse: separate;
+  color: var(--aura-color-foreground-primary);
+  font-size: var(--aura-font-size-label);
+}
+
+.tableHead {
+  background: var(--aura-bg-subtle);
+}
+
+.tableHeader,
+.tableCell {
+  padding: var(--aura-space-3) var(--aura-space-4);
+  text-align: start;
+  border-block-end: var(--aura-border-width-thin) solid var(--aura-color-border-subtle);
+}
+
+.tableHeader {
+  font-weight: var(--aura-font-weight-semibold);
+}
+
+.tableCell {
+  color: var(--aura-color-foreground-secondary);
+}
+
+.table tr:last-child .tableCell {
+  border-block-end: 0;
+}
+
+.rule {
+  margin-block: var(--aura-space-8);
+  border: 0;
+  border-block-start: var(--aura-border-width-thin) solid
+    var(--aura-color-border-subtle);
+}
+
+.image {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+  margin-block: var(--aura-space-6);
+  border-radius: var(--aura-radius-lg);
+}
+
+.visuallyHidden {
+  position: absolute;
+  inline-size: var(--aura-border-width-thin);
+  block-size: var(--aura-border-width-thin);
+  padding: 0;
+  margin: calc(var(--aura-border-width-thin) * -1);
+  overflow: hidden;
+  white-space: nowrap;
+  border: 0;
+  clip-path: inset(50%);
+}
+
+@media (forced-colors: active) {
+  .link,
+  .copyButton {
+    color: LinkText;
+  }
+
+  .codeBlock,
+  .tableScroller,
+  .copyButton {
+    border-color: CanvasText;
+  }
+}

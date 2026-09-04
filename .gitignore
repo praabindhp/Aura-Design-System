@@ -1,0 +1,16 @@
+node_modules/
+dist/
+coverage/
+storybook-static/
+test-results/
+playwright-report/
+*.tsbuildinfo
+*.tgz
+*.log
+.DS_Store
+.env
+.env.*
+!.env.example
+apps/consumer-vite/src/generated/
+packages/*/src/generated/
+packages/tokens/dist/

@@ -1,0 +1,137 @@
+.auth {
+  min-block-size: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.9fr) minmax(0, 1.1fr);
+  background: var(--aura-bg-app);
+}
+
+.authBrand {
+  position: relative;
+  padding: clamp(var(--aura-space-8), 7vw, var(--aura-space-16));
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--aura-space-8);
+  color: var(--aura-brand-on-solid);
+  background: var(--aura-brand-action);
+}
+
+.authBrand::after {
+  position: absolute;
+  inset: 20% -20% -32%;
+  border-radius: var(--aura-radius-pill);
+  background: radial-gradient(circle, var(--aura-brand-glow), transparent 68%);
+  content: "";
+  pointer-events: none;
+}
+
+.authBrandContent {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: var(--aura-space-4);
+}
+
+.authBrandContent h1 {
+  max-inline-size: 14ch;
+  color: inherit;
+  font-size: clamp(var(--aura-font-size-display), 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.authBrandContent p {
+  max-inline-size: 42ch;
+  color: inherit;
+  font-size: var(--aura-font-size-body-lg);
+  line-height: var(--aura-line-height-body);
+  opacity: 0.88;
+}
+
+.authFormArea {
+  padding: clamp(var(--aura-space-6), 7vw, var(--aura-space-16));
+  display: grid;
+  place-items: center;
+}
+
+.authForm {
+  inline-size: min(100%, 28rem);
+  display: grid;
+  gap: var(--aura-space-6);
+}
+
+.authFormHeader {
+  display: grid;
+  gap: var(--aura-space-2);
+}
+
+.authFormHeader h2 {
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-display);
+  line-height: var(--aura-line-height-heading);
+}
+
+.authFormHeader p {
+  color: var(--aura-text-secondary);
+  line-height: var(--aura-line-height-body);
+}
+
+.conversation {
+  min-block-size: calc(100dvh - var(--aura-size-header));
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+.conversationBody {
+  min-width: 0;
+  inline-size: min(100%, var(--aura-size-reading));
+  margin-inline: auto;
+  padding: var(--aura-space-6) var(--aura-space-5) var(--aura-space-10);
+}
+
+.conversationComposer {
+  position: sticky;
+  z-index: var(--aura-z-sticky);
+  inset-block-end: 0;
+}
+
+.editor {
+  min-block-size: calc(100dvh - var(--aura-size-header));
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.editorToolbar,
+.editorFooter {
+  min-width: 0;
+  padding: var(--aura-space-3) var(--aura-space-4);
+  border-block-end: 1px solid var(--aura-border-decorative);
+  background: var(--aura-bg-subtle);
+}
+
+.editorFooter {
+  border-block-start: 1px solid var(--aura-border-decorative);
+  border-block-end: 0;
+}
+
+.editorBody {
+  min-width: 0;
+  overflow: auto;
+}
+
+@media (width <= 52rem) {
+  .auth {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .authBrand {
+    min-block-size: 16rem;
+    padding: var(--aura-space-8) var(--aura-space-5);
+  }
+
+  .authFormArea {
+    padding: var(--aura-space-8) var(--aura-space-5);
+  }
+}

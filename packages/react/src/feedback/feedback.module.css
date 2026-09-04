@@ -1,0 +1,154 @@
+.alert {
+  min-width: 0;
+  padding: var(--aura-space-4);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--aura-space-3);
+  color: var(--aura-alert-content, var(--aura-status-info-content));
+  border: 1px solid var(--aura-alert-border, var(--aura-status-info-border));
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-alert-bg, var(--aura-status-info-bg));
+}
+
+.alert[data-tone="success"] {
+  --aura-alert-content: var(--aura-status-success-content);
+  --aura-alert-border: var(--aura-status-success-border);
+  --aura-alert-bg: var(--aura-status-success-bg);
+}
+
+.alert[data-tone="warning"] {
+  --aura-alert-content: var(--aura-status-warning-content);
+  --aura-alert-border: var(--aura-status-warning-border);
+  --aura-alert-bg: var(--aura-status-warning-bg);
+}
+
+.alert[data-tone="danger"] {
+  --aura-alert-content: var(--aura-status-danger-content);
+  --aura-alert-border: var(--aura-status-danger-border);
+  --aura-alert-bg: var(--aura-status-danger-bg);
+}
+
+.alertTitle {
+  color: inherit;
+  font-size: var(--aura-font-size-body);
+  font-weight: 680;
+}
+
+.alertDescription {
+  margin-block-start: var(--aura-space-1);
+  color: var(--aura-text-secondary);
+  font-size: var(--aura-font-size-label);
+  line-height: var(--aura-line-height-body);
+}
+
+.dismiss {
+  min-inline-size: var(--aura-size-target-min);
+  min-block-size: var(--aura-size-target-min);
+  padding: 0;
+  display: grid;
+  place-items: center;
+  color: inherit;
+  border: 0;
+  border-radius: var(--aura-radius-sm);
+  background: transparent;
+  cursor: pointer;
+}
+
+.state {
+  min-block-size: 14rem;
+  padding: var(--aura-space-8);
+  display: grid;
+  place-items: center;
+  color: var(--aura-text-secondary);
+  text-align: center;
+}
+
+.stateContent {
+  inline-size: min(100%, 30rem);
+  display: grid;
+  justify-items: center;
+  gap: var(--aura-space-3);
+}
+
+.stateIcon {
+  inline-size: var(--aura-size-control-lg);
+  block-size: var(--aura-size-control-lg);
+  display: grid;
+  place-items: center;
+  color: var(--aura-state-content, var(--aura-brand-content));
+  border: 1px solid var(--aura-state-border, var(--aura-brand-border-strong));
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-state-bg, var(--aura-brand-soft));
+}
+
+.state[data-tone="danger"] .stateIcon {
+  --aura-state-content: var(--aura-status-danger-content);
+  --aura-state-border: var(--aura-status-danger-border);
+  --aura-state-bg: var(--aura-status-danger-bg);
+}
+
+.state h2 {
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-title-sm);
+  line-height: var(--aura-line-height-heading);
+}
+
+.state p {
+  color: var(--aura-text-secondary);
+  font-size: var(--aura-font-size-body);
+  line-height: var(--aura-line-height-body);
+}
+
+.stateAction {
+  margin-block-start: var(--aura-space-2);
+}
+
+.loading {
+  min-block-size: 10rem;
+  display: grid;
+  place-items: center;
+  gap: var(--aura-space-3);
+  color: var(--aura-text-secondary);
+}
+
+.modal:global(.ant-modal-root) :global(.ant-modal-mask),
+.drawer:global(.ant-drawer) :global(.ant-drawer-mask) {
+  background: var(--aura-overlay-scrim);
+  backdrop-filter: blur(var(--aura-overlay-blur));
+}
+
+.modal :global(.ant-modal-content),
+.drawer :global(.ant-drawer-content) {
+  color: var(--aura-text-primary);
+  border: 1px solid var(--aura-border-subtle);
+  background: var(--aura-bg-elevated);
+  box-shadow: var(--aura-shadow-lg);
+}
+
+.modal :global(.ant-modal-content) {
+  border-radius: var(--aura-radius-lg);
+}
+
+.modal :global(.ant-modal-title),
+.drawer :global(.ant-drawer-title) {
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-title-sm);
+}
+
+.tooltip :global(.ant-tooltip-inner) {
+  color: var(--aura-text-inverse);
+  border: 1px solid var(--aura-border-strong);
+  border-radius: var(--aura-radius-sm);
+  background: var(--aura-bg-inverse);
+  font-size: var(--aura-font-size-caption);
+  box-shadow: var(--aura-shadow-md);
+}
+
+.popconfirm :global(.ant-popover-inner) {
+  color: var(--aura-text-primary);
+  border: 1px solid var(--aura-border-subtle);
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-bg-elevated);
+  box-shadow: var(--aura-shadow-lg);
+}

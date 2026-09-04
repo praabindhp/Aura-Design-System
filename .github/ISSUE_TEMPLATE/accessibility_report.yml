@@ -1,0 +1,76 @@
+name: Accessibility report
+description: Report a public, non-security accessibility barrier in PADS.
+title: "[Accessibility]: "
+labels:
+  - accessibility
+  - bug
+  - triage
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Accessibility barriers are defects. Please describe the user impact directly. Do not include private medical information or security-sensitive details.
+  - type: input
+    id: package
+    attributes:
+      label: Package and version
+      placeholder: "@praabindh/aura-design-system 1.2.3"
+    validations:
+      required: true
+  - type: dropdown
+    id: barrier
+    attributes:
+      label: Barrier type
+      multiple: true
+      options:
+        - Keyboard operation
+        - Focus order or visibility
+        - Screen-reader semantics or announcement
+        - Text or non-text contrast
+        - Reflow or zoom
+        - Touch target or pointer operation
+        - Motion or flashing
+        - Forced colors or user preference
+        - Cognitive or content clarity
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: User impact
+      description: Explain which task is blocked or made difficult and for whom, without sharing unnecessary personal information.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Include keyboard sequence, zoom, appearance, and component state where relevant.
+    validations:
+      required: true
+  - type: input
+    id: assistive_technology
+    attributes:
+      label: Assistive technology and environment
+      placeholder: "VoiceOver with Safari 17 on macOS; keyboard only; 200% zoom"
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected accessible behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Add a sanitized reproduction, standards reference, screenshot, or recording if useful.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checklist
+      options:
+        - label: I searched for an existing accessibility report.
+          required: true
+        - label: This report contains no private product data or security-sensitive details.
+          required: true

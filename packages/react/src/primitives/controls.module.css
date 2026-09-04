@@ -1,0 +1,171 @@
+.button,
+.linkButton,
+.iconButton {
+  min-block-size: var(--aura-size-control);
+  border: 1px solid transparent;
+  border-radius: var(--aura-radius-md);
+  font: inherit;
+  font-size: var(--aura-font-size-label);
+  font-weight: 650;
+  line-height: var(--aura-line-height-compact);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    border-color var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    background var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    transform var(--aura-motion-fast) var(--aura-motion-easing-standard);
+}
+
+.button,
+.linkButton {
+  padding-inline: var(--aura-space-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--aura-space-2);
+}
+
+.iconButton {
+  inline-size: var(--aura-size-control);
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  color: var(--aura-text-secondary);
+  border-color: var(--aura-border-control);
+  background: var(--aura-bg-surface);
+}
+
+.button[data-size="sm"],
+.linkButton[data-size="sm"] {
+  min-block-size: var(--aura-size-control-sm);
+  padding-inline: var(--aura-space-3);
+}
+
+.button[data-size="lg"],
+.linkButton[data-size="lg"] {
+  min-block-size: var(--aura-size-control-lg);
+  padding-inline: var(--aura-space-5);
+  font-size: var(--aura-font-size-body);
+}
+
+.button[data-variant="primary"],
+.linkButton[data-variant="primary"] {
+  color: var(--aura-brand-on-solid);
+  border-color: var(--aura-brand-action);
+  background: var(--aura-brand-action);
+}
+
+.button[data-variant="primary"]:hover:not(:disabled),
+.linkButton[data-variant="primary"]:hover {
+  border-color: var(--aura-brand-hover);
+  background: var(--aura-brand-hover);
+}
+
+.button[data-variant="secondary"],
+.linkButton[data-variant="secondary"] {
+  color: var(--aura-text-primary);
+  border-color: var(--aura-border-control);
+  background: var(--aura-bg-surface);
+}
+
+.button[data-variant="secondary"]:hover:not(:disabled),
+.linkButton[data-variant="secondary"]:hover {
+  border-color: var(--aura-brand-border-strong);
+  background: var(--aura-bg-hover);
+}
+
+.button[data-variant="ghost"],
+.linkButton[data-variant="ghost"] {
+  color: var(--aura-text-secondary);
+  border-color: transparent;
+  background: transparent;
+}
+
+.button[data-variant="ghost"]:hover:not(:disabled),
+.linkButton[data-variant="ghost"]:hover {
+  color: var(--aura-text-primary);
+  background: var(--aura-bg-hover);
+}
+
+.button[data-variant="danger"],
+.linkButton[data-variant="danger"] {
+  color: var(--aura-status-danger-on-solid);
+  border-color: var(--aura-status-danger-content);
+  background: var(--aura-status-danger-content);
+}
+
+.button[data-variant="danger"]:hover:not(:disabled),
+.linkButton[data-variant="danger"]:hover {
+  filter: brightness(0.92);
+}
+
+.button:disabled,
+.iconButton:disabled {
+  color: var(--aura-text-disabled);
+  border-color: var(--aura-border-decorative);
+  background: var(--aura-bg-disabled);
+  cursor: not-allowed;
+  transform: none;
+}
+
+.button:active:not(:disabled),
+.linkButton:active,
+.iconButton:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.fullWidth {
+  inline-size: 100%;
+}
+
+.iconButton[data-size="sm"] {
+  inline-size: var(--aura-size-control-sm);
+  min-block-size: var(--aura-size-control-sm);
+}
+
+.iconButton[data-size="lg"] {
+  inline-size: var(--aura-size-control-lg);
+  min-block-size: var(--aura-size-control-lg);
+}
+
+.iconButton[data-variant="ghost"] {
+  border-color: transparent;
+  background: transparent;
+}
+
+.iconButton[data-variant="danger"] {
+  color: var(--aura-status-danger-content);
+  border-color: var(--aura-status-danger-border);
+  background: var(--aura-status-danger-bg);
+}
+
+.iconButton:hover:not(:disabled) {
+  color: var(--aura-text-primary);
+  border-color: var(--aura-brand-border-strong);
+  background: var(--aura-bg-hover);
+}
+
+.spinner {
+  inline-size: 1em;
+  block-size: 1em;
+  flex: 0 0 auto;
+  border: 2px solid currentcolor;
+  border-inline-end-color: transparent;
+  border-radius: var(--aura-radius-pill);
+  animation: aura-spin var(--aura-motion-slow) linear infinite;
+}
+
+@keyframes aura-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (forced-colors: active) {
+  .button,
+  .linkButton,
+  .iconButton {
+    border-color: ButtonBorder;
+  }
+}

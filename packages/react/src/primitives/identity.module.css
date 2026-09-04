@@ -1,0 +1,80 @@
+.mark {
+  inline-size: var(--aura-mark-size, 2.5rem);
+  block-size: var(--aura-mark-size, 2.5rem);
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  color: var(--aura-mark-fg);
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-mark-bg);
+  font-size: calc(var(--aura-mark-size, 2.5rem) * 0.45);
+  font-weight: 760;
+  line-height: 1;
+}
+
+.mark[data-size="sm"] {
+  --aura-mark-size: 1.875rem;
+}
+
+.mark[data-size="lg"] {
+  --aura-mark-size: 3rem;
+}
+
+.mark[data-brand="aura"] {
+  --aura-mark-bg: var(--aura-mark-aura-bg);
+  --aura-mark-fg: var(--aura-mark-aura-fg);
+}
+
+.mark[data-brand="verbaura"] {
+  --aura-mark-bg: var(--aura-mark-verbaura-bg);
+  --aura-mark-fg: var(--aura-mark-verbaura-fg);
+}
+
+.mark[data-brand="cognaura"] {
+  --aura-mark-bg: var(--aura-mark-cognaura-bg);
+  --aura-mark-fg: var(--aura-mark-cognaura-fg);
+}
+
+.mark[data-brand="rendaura"] {
+  --aura-mark-bg: var(--aura-mark-rendaura-bg);
+  --aura-mark-fg: var(--aura-mark-rendaura-fg);
+}
+
+.mark[data-brand="charteraura"] {
+  --aura-mark-bg: var(--aura-mark-charteraura-bg);
+  --aura-mark-fg: var(--aura-mark-charteraura-fg);
+}
+
+.mark[data-brand="charteraura-intermediate"] {
+  --aura-mark-bg: var(--aura-mark-charteraura-intermediate-bg);
+  --aura-mark-fg: var(--aura-mark-charteraura-intermediate-fg);
+}
+
+.avatar {
+  inline-size: var(--aura-avatar-size, 2.5rem);
+  block-size: var(--aura-avatar-size, 2.5rem);
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: hidden;
+  color: var(--aura-text-primary);
+  border: 1px solid var(--aura-border-subtle);
+  border-radius: var(--aura-radius-pill);
+  background: var(--aura-bg-subtle);
+  font-weight: 650;
+}
+
+.avatar[data-size="sm"] {
+  --aura-avatar-size: 2rem;
+}
+
+.avatar[data-size="lg"] {
+  --aura-avatar-size: 3rem;
+}
+
+.avatar img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}

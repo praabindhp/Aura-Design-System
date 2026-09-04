@@ -1,0 +1,36 @@
+.scope {
+  min-width: 0;
+  min-height: 100%;
+  color: var(--aura-text-primary);
+  background: var(--aura-bg-app);
+}
+
+.themeToggle {
+  inline-size: var(--aura-size-control-lg);
+  block-size: var(--aura-size-control-lg);
+  padding: 0;
+  display: inline-grid;
+  place-items: center;
+  color: var(--aura-text-secondary);
+  border: 1px solid var(--aura-border-control);
+  border-radius: var(--aura-radius-md);
+  background: var(--aura-bg-surface);
+  cursor: pointer;
+  transition:
+    color var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    border-color var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    background var(--aura-motion-fast) var(--aura-motion-easing-standard);
+}
+
+.themeToggle:disabled {
+  color: var(--aura-text-disabled);
+  border-color: var(--aura-border-decorative);
+  background: var(--aura-bg-disabled);
+  cursor: not-allowed;
+}
+
+.themeToggle:hover:not(:disabled) {
+  color: var(--aura-text-primary);
+  border-color: var(--aura-brand-border-strong);
+  background: var(--aura-bg-hover);
+}

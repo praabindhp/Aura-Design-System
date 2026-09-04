@@ -1,0 +1,27 @@
+@layer aura-compat {
+  :where([data-aura-theme]) {
+    --app-bg: var(--aura-bg-app);
+    --sidebar-bg: var(--aura-bg-sidebar);
+    --surface: var(--aura-bg-surface);
+    --surface-subtle: var(--aura-bg-subtle);
+    --surface-hover: var(--aura-bg-hover);
+    --surface-elevated: var(--aura-bg-elevated);
+    --text-primary: var(--aura-text-primary);
+    --text-secondary: var(--aura-text-secondary);
+    --text-muted: var(--aura-text-muted);
+    --border: var(--aura-border-subtle);
+    --border-subtle: var(--aura-border-decorative);
+    --brand-action: var(--aura-brand-action);
+    --brand-accent: var(--aura-brand-content);
+    --brand-soft: var(--aura-brand-soft);
+    --brand-subtle: var(--aura-brand-subtle);
+    --brand-border: var(--aura-brand-border-strong);
+    --text-on-brand: var(--aura-brand-on-solid);
+    --semantic-success: var(--aura-status-success-content);
+    --semantic-success-bg: var(--aura-status-success-bg);
+    --semantic-warning: var(--aura-status-warning-content);
+    --semantic-warning-bg: var(--aura-status-warning-bg);
+    --semantic-danger: var(--aura-status-danger-content);
+    --semantic-danger-bg: var(--aura-status-danger-bg);
+  }
+}
