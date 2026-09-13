@@ -15,8 +15,8 @@
     "@praabindh/aura-rich-content": "1.0.0",
     "@praabindh/aura-tokens": "1.0.0",
     "lucide-react": "1.31.0",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "10.5.9",
