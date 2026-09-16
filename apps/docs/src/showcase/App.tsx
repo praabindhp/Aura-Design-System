@@ -1,4 +1,12 @@
-import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  lazy,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
 import {
   AuraProvider,
   Avatar,
@@ -68,6 +76,15 @@ function savePreference(key: string, value: string) {
   }
 }
 
+function currentRoute() {
+  return window.location.hash.startsWith("#/") ? window.location.hash.slice(1) : "/";
+}
+
+function subscribeToRoute(onChange: () => void) {
+  window.addEventListener("hashchange", onChange);
+  return () => window.removeEventListener("hashchange", onChange);
+}
+
 export function App() {
   const [brand, setBrand] = useState<AuraBrand>(() => {
     const value = savedPreference("pads-showcase-brand");
@@ -114,20 +131,10 @@ function Site({
   setBrand: (brand: AuraBrand) => void;
   setTheme: (theme: ThemePreference) => void;
 }) {
-  const [route, setRoute] = useState(() =>
-    window.location.hash.startsWith("#/") ? window.location.hash.slice(1) : "/",
-  );
+  const route = useSyncExternalStore(subscribeToRoute, currentRoute);
   const main = useRef<HTMLElement>(null);
   const first = useRef(true);
   const { mode } = useAura();
-  useEffect(() => {
-    const navigate = () => {
-      if (window.location.hash.startsWith("#/"))
-        setRoute(window.location.hash.slice(1));
-    };
-    window.addEventListener("hashchange", navigate);
-    return () => window.removeEventListener("hashchange", navigate);
-  }, []);
   useEffect(() => {
     const section = route.startsWith("/components")
       ? "Components"

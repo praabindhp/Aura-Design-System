@@ -81,6 +81,10 @@ test.describe("PADS public showcase", () => {
     await page.getByRole("button", { name: "Try again" }).click();
     await expect(page.getByText("Connection restored")).toBeVisible();
     await page.goto(`${site}#/components/Confirm`);
+    await expect(
+      page.getByRole("heading", { name: "Confirm", exact: true }),
+    ).toBeVisible();
+    await expect(page.getByText("Recovered", { exact: true })).toBeHidden();
     await page.getByRole("button", { name: "Remove example", exact: true }).click();
     await page.getByRole("button", { name: "Cancel", exact: true }).click();
     await expect(page.getByText("Remove the example?", { exact: true })).toBeHidden();

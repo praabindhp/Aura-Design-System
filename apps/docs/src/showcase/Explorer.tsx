@@ -58,7 +58,7 @@ export default function Explorer({ route }: { route: string }) {
             </span>
           </header>
           <div>
-            <Preview name={entry.name} />
+            <Preview key={entry.name} name={entry.name} />
           </div>
         </section>
         <div className={styles.detailColumns}>
