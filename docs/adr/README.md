@@ -27,3 +27,5 @@ Accepted decisions:
 - [ADR-0002: Generate platform artifacts from DTCG-compatible tokens](0002-token-source-of-truth.md)
 - [ADR-0003: Keep Ant Design behind an internal adapter](0003-ant-adapter.md)
 - [ADR-0004: Validate offline packed-consumer peers explicitly](0004-offline-packed-consumer-peer-validation.md)
+
+- [ADR-0005: Publish the PADS showcase with Storybook on GitHub Pages](0005-github-pages-showcase.md)

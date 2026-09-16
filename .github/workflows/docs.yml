@@ -2,31 +2,32 @@ name: Documentation
 
 on:
   workflow_dispatch:
-  push:
+  workflow_run:
+    workflows: [Quality]
+    types: [completed]
     branches: [main]
-    paths:
-      - "apps/docs/**"
-      - "packages/**"
-      - "package-lock.json"
-      - "package.json"
-      - ".github/workflows/docs.yml"
 
 concurrency:
-  group: documentation-${{ github.ref }}
-  cancel-in-progress: true
+  group: github-pages
+  cancel-in-progress: false
 
 permissions:
   contents: read
 
 jobs:
-  storybook:
-    name: Build private Storybook
+  build:
+    name: Build PADS showcase and Storybook
+    if: >-
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main') ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push')
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out source
+      - name: Check out the verified commit
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
           persist-credentials: false
 
       - name: Use Node.js
@@ -41,16 +42,29 @@ jobs:
       - name: Install locked dependencies
         run: npm ci
 
-      - name: Build publishable packages
-        run: npm run build:packages
+      - name: Build site and validate complete component coverage
+        run: npm run docs:build
 
-      - name: Build Storybook
-        run: npm run storybook:build
-
-      - name: Upload authenticated documentation artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4
         with:
-          name: pads-storybook-${{ github.sha }}
-          path: apps/docs/storybook-static/
-          if-no-files-found: error
-          retention-days: 14
+          path: apps/docs/dist
+
+  deploy:
+    name: Deploy GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - name: Deploy showcase and component explorer
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

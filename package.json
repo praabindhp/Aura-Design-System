@@ -44,7 +44,11 @@
     "changeset": "changeset",
     "version-packages": "changeset version",
     "release": "changeset publish",
-    "verify": "npm run format:check && npm run lint && npm run lint:styles && npm run lint:architecture && npm run security:scan && npm run tokens:check && npm run typecheck && npm run test:coverage && npm run build && npm run bundle:check && npm run storybook:build && npm run package:check && npm run test:browser && npm run audit:dependencies"
+    "verify": "npm run format:check && npm run lint && npm run lint:styles && npm run lint:architecture && npm run security:scan && npm run tokens:check && npm run typecheck && npm run test:coverage && npm run build && npm run bundle:check && npm run storybook:build && npm run docs:assemble && npm run package:check && npm run test:browser && npm run audit:dependencies",
+    "showcase": "npm run showcase:dev --workspace @praabindh/aura-docs",
+    "docs:assemble": "npm run showcase:build --workspace @praabindh/aura-docs && node tooling/scripts/assemble-docs.mjs",
+    "docs:build": "npm run build:packages && npm run storybook:build && npm run docs:assemble",
+    "docs:preview": "npm run showcase:preview --workspace @praabindh/aura-docs"
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.5",

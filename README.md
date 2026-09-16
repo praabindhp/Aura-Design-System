@@ -132,6 +132,22 @@ architecture boundaries, local credential screening, token generation and
 contrast, type checking, tests, coverage, Storybook, accessibility, package
 builds, bundle budgets, and packed-consumer integrity.
 
+## Showcase and component explorer
+
+The repository includes an interactive PADS showcase, a searchable catalog of
+all 88 public components, foundations, and setup guidance. It supports six brand
+recipes and light, dark, and system appearance, with the full Storybook embedded
+for detailed examples.
+
+```bash
+npm run docs:build
+npm run docs:preview
+```
+
+The GitHub Pages workflow deploys verified changes from `main`. See
+[showcase and hosting](docs/showcase.md) for Pages activation, local development,
+URL structure, and maintenance.
+
 ## Documentation
 
 - [Architecture](docs/architecture.md)

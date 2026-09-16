@@ -40,10 +40,19 @@ export default defineConfig({
       use: { ...devices["Desktop Chrome"] },
     },
   ],
-  webServer: {
-    command: "npm run storybook --workspace @praabindh/aura-docs",
-    url: "http://127.0.0.1:6006",
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
-  },
+  webServer: [
+    {
+      command: "npm run storybook --workspace @praabindh/aura-docs",
+      url: "http://127.0.0.1:6006",
+      reuseExistingServer: !process.env.CI,
+      timeout: 120_000,
+    },
+    {
+      command:
+        "npm run showcase:preview --workspace @praabindh/aura-docs -- --port 4174 --base=/Aura-Design-System/",
+      url: "http://127.0.0.1:4174/Aura-Design-System/",
+      reuseExistingServer: !process.env.CI,
+      timeout: 30_000,
+    },
+  ],
 });

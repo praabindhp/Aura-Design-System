@@ -2,12 +2,15 @@
   "name": "@praabindh/aura-docs",
   "version": "1.0.0",
   "private": true,
-  "description": "Private Storybook documentation for Praabindh's Aura-Design-System.",
+  "description": "Showcase, component explorer, and Storybook documentation for Praabindh's Aura Design System.",
   "type": "module",
   "scripts": {
     "build": "storybook build",
     "storybook": "storybook dev --port 6006 --no-open",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "showcase:dev": "vite --host 127.0.0.1 --port 4173",
+    "showcase:build": "vite build",
+    "showcase:preview": "vite preview --host 127.0.0.1 --port 4173"
   },
   "dependencies": {
     "@praabindh/aura-charts": "1.0.0",
