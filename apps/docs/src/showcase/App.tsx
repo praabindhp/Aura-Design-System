@@ -12,19 +12,19 @@ import {
   Avatar,
   Badge,
   Button,
+  DropdownSelect,
   IconButton,
   Inline,
   LinkButton,
   LoadingState,
   ProductMark,
-  Select,
   Stack,
   Text,
   useAura,
   type AuraBrand,
   type ThemePreference,
 } from "@praabindh/aura-design-system";
-import { auraBrands, isAuraBrand, isThemePreference } from "@praabindh/aura-tokens";
+import { isAuraBrand, isThemePreference } from "@praabindh/aura-tokens";
 import {
   ArrowDown,
   ArrowRight,
@@ -58,8 +58,15 @@ export const brandNames: Record<AuraBrand, string> = {
   cognaura: "CognAura",
   rendaura: "RendAura",
   charteraura: "CharterAura",
-  "charteraura-intermediate": "CharterAura Intermediate",
+  "charteraura-intermediate": "CharterAura",
 };
+const appBrands: AuraBrand[] = [
+  "aura",
+  "verbaura",
+  "cognaura",
+  "rendaura",
+  "charteraura",
+];
 
 function savedPreference(key: string) {
   try {
@@ -256,20 +263,37 @@ function Site({
         </span>
         <div className={styles.appearanceControl}>
           <label htmlFor="site-brand">Brand</label>
-          <Select
+          <DropdownSelect
             id="site-brand"
-            value={brand}
+            placement="top"
+            value={brand === "charteraura-intermediate" ? "charteraura" : brand}
             onValueChange={setBrand}
-            options={auraBrands.map((item) => ({
+            options={appBrands.map((item) => ({
               value: item,
               label: brandNames[item],
             }))}
           />
         </div>
+        {(brand === "charteraura" || brand === "charteraura-intermediate") && (
+          <div className={`${styles.appearanceControl} ${styles.charterMode}`}>
+            <label htmlFor="site-charter-mode">CharterAura mode</label>
+            <DropdownSelect
+              id="site-charter-mode"
+              placement="top"
+              value={brand}
+              onValueChange={setBrand}
+              options={[
+                { value: "charteraura", label: "Standard" },
+                { value: "charteraura-intermediate", label: "Intermediate" },
+              ]}
+            />
+          </div>
+        )}
         <div className={styles.appearanceControl}>
           <label htmlFor="site-theme">Theme</label>
-          <Select
+          <DropdownSelect
             id="site-theme"
+            placement="top"
             value={theme}
             onValueChange={setTheme}
             options={[
@@ -503,7 +527,7 @@ function Showcase() {
           </p>
         </div>
         <div className={styles.brandGrid}>
-          {auraBrands.map((brand) => (
+          {appBrands.map((brand) => (
             <div key={brand}>
               <ProductMark brand={brand} size="md" />
               <span>{brandNames[brand]}</span>

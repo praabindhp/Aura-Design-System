@@ -1,4 +1,9 @@
 export {
+  DropdownSelect,
+  type DropdownSelectHandle,
+  type DropdownSelectProps,
+} from "./DropdownSelect.js";
+export {
   Checkbox,
   Field,
   FileDropzone,

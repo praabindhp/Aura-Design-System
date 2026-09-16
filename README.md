@@ -135,8 +135,8 @@ builds, bundle budgets, and packed-consumer integrity.
 ## Showcase and component explorer
 
 The repository includes an interactive PADS showcase, a searchable catalog of
-all 88 public components, foundations, and setup guidance. It supports six brand
-recipes and light, dark, and system appearance, with the full Storybook embedded
+all 89 public components, foundations, and setup guidance. It supports five apps
+and six brand recipes and light, dark, and system appearance, with the full Storybook embedded
 for detailed examples.
 
 ```bash

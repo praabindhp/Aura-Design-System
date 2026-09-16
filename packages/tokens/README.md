@@ -29,8 +29,10 @@ attributes. When no explicit theme is present, generated CSS follows
 runtime contract.
 
 Supported themes are `light` and `dark`; the persisted preference additionally
-supports `system`. Supported brands are Aura, VerbAura, CognAura, RendAura,
-CharterAura, and CharterAura Intermediate.
+supports `system`. The five app identities are Aura, VerbAura, CognAura, RendAura, and CharterAura.
+Aura uses premium black-and-white brand accents. CharterAura has standard and
+intermediate modes, represented by the compatible `charteraura` and
+`charteraura-intermediate` recipe keys. All six recipe keys remain supported.
 
 ```ts
 const tokens = getThemeTokens("dark", "cognaura");

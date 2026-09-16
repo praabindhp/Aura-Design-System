@@ -94,7 +94,16 @@ const antConfig = (mode: ThemeMode, brand: AuraBrand): AntThemeConfig => {
     },
     components: {
       Button: { fontWeight: 620, primaryShadow: "none" },
-      Input: { activeShadow: `0 0 0 3px ${value("--aura-focus-halo")}` },
+      Input: { activeShadow: "none" },
+      Select: {
+        activeOutlineColor: "transparent",
+        activeBorderColor: value("--aura-focus-stroke"),
+        hoverBorderColor: value("--aura-border-control"),
+        optionSelectedBg: value("--aura-brand-soft"),
+        optionSelectedColor: value("--aura-brand-content"),
+        optionActiveBg: value("--aura-bg-hover"),
+        controlItemBgActiveHover: value("--aura-brand-soft"),
+      },
       Modal: {
         contentBg: value("--aura-bg-elevated"),
         headerBg: value("--aura-bg-elevated"),

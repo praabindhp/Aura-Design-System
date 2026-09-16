@@ -47,6 +47,10 @@ function group(
 }
 
 export const catalog: CatalogEntry[] = [
+  ...group("Forms", "forms-styled-dropdowns--workspace-visibility", {
+    DropdownSelect:
+      "A styled single-choice dropdown with keyboard navigation and clear selection.",
+  }),
   ...group("Foundations", "foundations-typography-and-space--theme-runtime", {
     AuraProvider: "One boundary for brand, appearance, and component context.",
     ThemeToggle: "Switch appearance with a clear, accessible action.",
@@ -63,7 +67,7 @@ export const catalog: CatalogEntry[] = [
   }),
   ...group("Foundations", "primitives-actions-and-identity--identity-and-status", {
     Avatar: "Compact identity with an image or a readable fallback.",
-    ProductMark: "The six Aura identities, with consistent geometry and color.",
+    ProductMark: "The five Aura app identities, with consistent geometry and color.",
   }),
   ...group("Actions", "primitives-actions-and-identity--all-variants", {
     Button: "Primary, secondary, ghost, and danger actions with native semantics.",

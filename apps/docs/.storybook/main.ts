@@ -6,7 +6,10 @@ const workspacePath = (relativePath: string): string =>
   fileURLToPath(new URL(relativePath, import.meta.url));
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.stories.@(ts|tsx)"],
+  stories: [
+    "../src/**/*.stories.@(ts|tsx)",
+    "../../../packages/react/src/**/*.stories.tsx",
+  ],
   addons: ["@storybook/addon-docs", "@storybook/addon-a11y"],
   framework: {
     name: "@storybook/react-vite",

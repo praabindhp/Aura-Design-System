@@ -1,3 +1,4 @@
+import { chooseAppearance } from "../helpers/appearance";
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { catalog } from "../../apps/docs/src/showcase/catalog";
@@ -22,8 +23,8 @@ test.describe("PADS public showcase", () => {
       .fill("Hello Aura");
     await page.getByRole("button", { name: "Send message" }).click();
     await expect(page.getByText("Message sent in this local demo.")).toBeVisible();
-    await page.getByLabel("Brand", { exact: true }).selectOption("cognaura");
-    await page.getByLabel("Theme", { exact: true }).selectOption("light");
+    await chooseAppearance(page, "Brand", "cognaura");
+    await chooseAppearance(page, "Theme", "light");
     await page.reload();
     await expect(page.locator("html")).toHaveAttribute("data-aura-brand", "cognaura");
     await expect(page.locator("html")).toHaveAttribute("data-aura-theme", "light");
@@ -110,7 +111,7 @@ test.describe("PADS public showcase", () => {
     await expect(
       page.getByRole("radio", { name: "Build", exact: true }),
     ).toHaveAttribute("aria-checked", "true");
-    await page.getByLabel("Theme", { exact: true }).selectOption("system");
+    await chooseAppearance(page, "Theme", "system");
     await page.emulateMedia({ colorScheme: "light" });
     await expect(page.locator("html")).toHaveAttribute("data-aura-theme", "light");
     await page.emulateMedia({ colorScheme: "dark" });
@@ -168,9 +169,9 @@ test.describe("PADS public showcase", () => {
       "charteraura",
       "charteraura-intermediate",
     ]) {
-      await page.getByLabel("Brand", { exact: true }).selectOption(brand);
+      await chooseAppearance(page, "Brand", brand);
       for (const theme of ["light", "dark"]) {
-        await page.getByLabel("Theme", { exact: true }).selectOption(theme);
+        await chooseAppearance(page, "Theme", theme);
         await expect(page.locator("html")).toHaveAttribute("data-aura-theme", theme);
         await page.evaluate(async () => {
           await Promise.all(
@@ -187,6 +188,19 @@ test.describe("PADS public showcase", () => {
           path: test.info().outputPath(`${brand}-${theme}.png`),
           fullPage: true,
         });
+        await page.getByRole("combobox", { name: "Brand", exact: true }).click();
+        await page.evaluate(async () => {
+          await Promise.all(
+            document
+              .getAnimations()
+              .map((animation) => animation.finished.catch(() => undefined)),
+          );
+        });
+        const menuResult = await new AxeBuilder({ page })
+          .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+          .analyze();
+        expect(menuResult.violations, `${brand} ${theme} open menu`).toEqual([]);
+        await page.keyboard.press("Escape");
       }
     }
     await page.goto(`${site}#/components`);
@@ -198,4 +212,100 @@ test.describe("PADS public showcase", () => {
       .analyze();
     expect(result.violations).toEqual([]);
   });
+});
+
+test("appearance uses styled menus, groups CharterAura modes, and preserves keyboard focus", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto(site);
+  const brand = page.getByRole("combobox", { name: "Brand", exact: true });
+  await brand.focus();
+  await page.keyboard.press("ArrowDown");
+  await expect(page.getByRole("listbox")).toBeVisible();
+  await expect(page.getByRole("option")).toHaveCount(5);
+  await page.evaluate(async () => {
+    await Promise.all(
+      document
+        .getAnimations()
+        .map((animation) => animation.finished.catch(() => undefined)),
+    );
+  });
+  const openMenu = await new AxeBuilder({ page })
+    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+    .analyze();
+  expect(openMenu.violations).toEqual([]);
+  await expect(
+    page.getByRole("option", { name: "CharterAura Intermediate", exact: true }),
+  ).toHaveCount(0);
+  await page.keyboard.press("Escape");
+  await expect(brand).toHaveAttribute("aria-expanded", "false");
+  await expect(brand).toBeFocused();
+  await chooseAppearance(page, "Brand", "charteraura-intermediate");
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-aura-brand",
+    "charteraura-intermediate",
+  );
+  await expect(page.getByRole("combobox", { name: "CharterAura mode" })).toBeVisible();
+  await page.setViewportSize({ width: 320, height: 700 });
+  await expect
+    .poll(() => page.evaluate(() => document.documentElement.scrollWidth))
+    .toBe(320);
+  await page.getByRole("combobox", { name: "CharterAura mode" }).click();
+  await expect(
+    page.getByRole("option", { name: "Intermediate", exact: true }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page.reload();
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-aura-brand",
+    "charteraura-intermediate",
+  );
+  await chooseAppearance(page, "Brand", "aura");
+  await expect(page.getByRole("combobox", { name: "CharterAura mode" })).toHaveCount(0);
+  for (const theme of ["light", "dark"]) {
+    await chooseAppearance(page, "Theme", theme);
+    await expect(page.locator("html")).toHaveAttribute("data-aura-theme", theme);
+    const action = await page
+      .locator("html")
+      .evaluate((element) =>
+        getComputedStyle(element).getPropertyValue("--aura-brand-action").trim(),
+      );
+    const expanded =
+      action.length === 4
+        ? `#${[...action.slice(1)].map((digit) => digit.repeat(2)).join("")}`
+        : action;
+    const channels = [1, 3, 5].map((index) =>
+      Number.parseInt(expanded.slice(index, index + 2), 16),
+    );
+    expect(new Set(channels).size).toBe(1);
+    expect(theme === "light" ? channels[0]! < 32 : channels[0]! > 239).toBe(true);
+  }
+});
+
+test("text controls show one focus boundary with no halo", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto(site);
+  for (const label of ["Workspace name", "A few words about it"]) {
+    const field = page.getByRole("textbox", { name: label, exact: true });
+    await field.click();
+    await expect(field).toBeFocused();
+    await expect(field).toHaveCSS("box-shadow", "none");
+    await expect(field).toHaveCSS("outline-style", "solid");
+    await expect(field).toHaveCSS(
+      "border-color",
+      await field.evaluate((node) => getComputedStyle(node).outlineColor),
+    );
+    const boundary = await field.evaluate((node) => {
+      const css = getComputedStyle(node);
+      return {
+        width: css.outlineWidth,
+        offset: css.outlineOffset,
+        border: css.borderColor,
+        outline: css.outlineColor,
+      };
+    });
+    expect(Number.parseFloat(boundary.offset)).toBe(-Number.parseFloat(boundary.width));
+    expect(boundary.border).toBe(boundary.outline);
+  }
 });

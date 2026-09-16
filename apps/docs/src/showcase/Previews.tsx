@@ -360,6 +360,21 @@ export function Preview({ name }: { name: ComponentName }) {
           onValueChange={setChoice}
         />
       );
+    case "DropdownSelect":
+      return (
+        <P.Field htmlFor={id} label="Workspace visibility">
+          <P.DropdownSelect
+            id={id}
+            value={choice}
+            onValueChange={setChoice}
+            options={[
+              { value: "design", label: "Only me" },
+              { value: "build", label: "My team" },
+              { value: "ship", label: "Everyone" },
+            ]}
+          />
+        </P.Field>
+      );
     case "Select":
       return (
         <P.Field htmlFor={id} label="Workspace stage">
@@ -470,18 +485,11 @@ export function Preview({ name }: { name: ComponentName }) {
     case "ProductMark":
       return (
         <P.Inline>
-          {(
-            [
-              "aura",
-              "verbaura",
-              "cognaura",
-              "rendaura",
-              "charteraura",
-              "charteraura-intermediate",
-            ] as const
-          ).map((item) => (
-            <P.ProductMark key={item} brand={item} size="sm" />
-          ))}
+          {(["aura", "verbaura", "cognaura", "rendaura", "charteraura"] as const).map(
+            (item) => (
+              <P.ProductMark key={item} brand={item} size="sm" />
+            ),
+          )}
         </P.Inline>
       );
     case "Badge":

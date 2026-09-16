@@ -8,7 +8,7 @@ import {
   PageHeader,
   PageLayout,
   ProductMark,
-  Select,
+  DropdownSelect,
   Stack,
   Surface,
   ThemeToggle,
@@ -118,7 +118,7 @@ export function App() {
     <AuraProvider brand={brand} defaultTheme="system">
       <header className="consumerToolbar">
         <ProductMark brand={brand} size="sm" />
-        <Select
+        <DropdownSelect
           aria-label="Preview brand"
           options={brands}
           value={brand}

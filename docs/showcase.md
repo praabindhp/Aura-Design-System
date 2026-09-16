@@ -2,19 +2,24 @@
 
 The documentation application in `apps/docs` contains the PADS showcase, a
 searchable component explorer, foundations, setup guidance, and Storybook. It
-consumes public package entry points and generated tokens. It does not change
-published component APIs or package artifacts, so this documentation-only change
-does not require a Changeset or declaration migration.
+consumes public package entry points and generated tokens. Its appearance
+refinements include an additive `DropdownSelect` primitive, a
+monochrome Aura token recipe, and simplified input focus. These consumer-visible
+changes have a Changeset; existing native `Select` and brand recipe keys remain
+compatible.
 
 ## Design-system review
 
-The implemented public library contains 88 components and four runtime helpers
+The implemented public library contains 89 components and four runtime helpers
 across React, charts, and rich content. The five published packages retain their
 existing dependency direction. The optional charts and rich-content packages
 remain separate from the base package.
 
-The canonical source currently provides six recipes: Aura, VerbAura, CognAura,
-RendAura, CharterAura, and CharterAura Intermediate. Every recipe supports light
+The canonical source provides six recipes across five apps: Aura, VerbAura,
+CognAura, RendAura, and CharterAura with standard and intermediate modes. The app
+selector and identity strip show CharterAura once; a separate mode selector
+chooses its recipe. Aura has monochrome brand accents and the hero uses a subtle
+gradient derived from the active brand glow token. Every recipe supports light
 and dark appearances; system mode follows the browser preference. The showcase
 starts with VerbAura's warm action color in dark mode, and stores only the
 visitor's brand and theme preferences locally.

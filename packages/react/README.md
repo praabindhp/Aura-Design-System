@@ -14,3 +14,7 @@ import { AuraProvider, Button } from "@praabindh/aura-design-system";
 
 Ant Design is an internal implementation detail. Consumer code must use the owned
 PADS contracts exported by this package.
+
+Use `DropdownSelect` for a styled, accessible single-choice popup and `Select`
+for native browser selection. See the [DropdownSelect guide](../../docs/dropdown-select.md)
+for props, keyboard behavior, validation, and examples.

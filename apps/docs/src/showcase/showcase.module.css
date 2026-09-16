@@ -135,8 +135,33 @@
 
 .hero {
   position: relative;
+  isolation: isolate;
   text-align: center;
   padding-block: calc(var(--aura-space-16) + var(--aura-space-6)) var(--aura-space-16);
+}
+
+.hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 45% 48% at 32% 38%,
+      var(--aura-brand-glow),
+      transparent 100%
+    ),
+    radial-gradient(
+      ellipse 42% 42% at 72% 44%,
+      var(--aura-brand-glow),
+      transparent 100%
+    );
+  mask-image: radial-gradient(
+    ellipse 70% 65% at 50% 45%,
+    var(--aura-bg-app) 20%,
+    transparent 75%
+  );
 }
 
 .release {
@@ -509,17 +534,30 @@
 }
 
 .appearanceControl {
-  display: flex;
+  min-inline-size: var(--aura-size-control);
+  display: grid;
   gap: var(--aura-space-2);
-  align-items: center;
   font-size: var(--aura-font-size-caption);
   color: var(--aura-text-muted);
 }
 
-.appearanceControl :where(select) {
+.appearanceControl > :where(div) {
+  inline-size: var(--aura-size-sidebar-collapsed);
+  min-inline-size: calc(var(--aura-space-16) * 2);
   max-inline-size: var(--aura-size-sidebar-expanded);
-  min-block-size: var(--aura-size-control-sm);
+}
+
+.appearanceControl:first-of-type > :where(div) {
+  min-inline-size: calc(var(--aura-space-16) * 2 + var(--aura-space-8));
+}
+
+.appearanceControl :where(label) {
   font-size: var(--aura-font-size-caption);
+  line-height: var(--aura-line-height-compact);
+}
+
+.charterMode {
+  min-inline-size: calc(var(--aura-space-16) * 2);
 }
 
 .skipLink {
@@ -1307,6 +1345,7 @@
     gap: var(--aura-space-3);
     max-inline-size: 100%;
     border-radius: 0;
+    flex-wrap: wrap;
   }
 
   .appearanceLabel {
@@ -1324,8 +1363,17 @@
     flex: 1.5;
   }
 
-  .appearanceControl :where(select) {
+  .appearanceControl.charterMode {
+    flex: 1 1 100%;
+    order: 1;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .appearanceControl > :where(div),
+  .appearanceControl:first-of-type > :where(div) {
     inline-size: 100%;
+    min-inline-size: 0;
     max-inline-size: 100%;
   }
 

@@ -9,6 +9,7 @@ describe("React package boundary", () => {
       "DataTable",
       "Dialog",
       "Input",
+      "DropdownSelect",
       "PageHeader",
       "AppShell",
       "AuthTemplate",

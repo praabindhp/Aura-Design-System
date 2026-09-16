@@ -160,7 +160,7 @@ export default function Guide({ page }: { page: string }) {
         <span className={styles.eyebrow}>THE THINKING BENEATH THE PIXELS</span>
         <h1>Consistency, by design.</h1>
         <p>
-          One source of truth. Six identities. A shared language
+          One source of truth. Five apps. A shared language
           <br />
           of color, typography, space, and interaction.
         </p>
