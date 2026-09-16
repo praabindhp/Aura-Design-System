@@ -19,7 +19,7 @@ for (const theme of ["light", "dark"] as const) {
 }
 
 for (const theme of ["light", "dark"] as const) {
-  test(`Aura monochrome showcase · ${theme}`, async ({ page }) => {
+  test(`Aura gold showcase · ${theme}`, async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 });
     await page.emulateMedia({ reducedMotion: "reduce", colorScheme: theme });
     await page.goto(site);

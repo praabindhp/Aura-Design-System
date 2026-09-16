@@ -203,31 +203,31 @@ test("generated artifacts have no drift", () => {
   );
 });
 
-test("Aura is monochrome while product recipes keep their distinct accents", () => {
+test("Aura has a premium gold palette while product recipes keep their distinct accents", () => {
   for (const mode of themeModes) {
     const aura = getThemeTokens(mode, "aura");
     for (const name of [
       "action",
       "hover",
       "active",
-      "content",
-      "on-solid",
       "soft",
       "subtle",
       "border-strong",
     ]) {
       const hex = aura[`--aura-brand-${name}`];
-      assert.match(hex, /^#[0-9a-f]{6}$/u);
-      assert.equal(hex.slice(1, 3), hex.slice(3, 5), `${mode} ${name}`);
-      assert.equal(hex.slice(3, 5), hex.slice(5, 7), `${mode} ${name}`);
+      assert.match(hex, /^#[0-9a-f]{6}$/iu);
+      assert.notEqual(hex.slice(1, 3), hex.slice(5, 7), `${mode} ${name}`);
     }
-    const actionChannel = Number.parseInt(aura["--aura-brand-action"].slice(1, 3), 16);
-    assert.equal(mode === "light" ? actionChannel < 32 : actionChannel > 239, true);
+    const action = aura["--aura-brand-action"];
+    const [red, green, blue] = [1, 3, 5].map((index) =>
+      Number.parseInt(action.slice(index, index + 2), 16),
+    );
+    assert.equal(red > green && green > blue, true, `${mode} action is gold`);
     assert.equal(aura["--aura-mark-aura-bg"], aura["--aura-brand-action"]);
     const products = auraBrands
       .filter((brand) => brand !== "aura")
       .map((brand) => getThemeTokens(mode, brand)["--aura-brand-action"]);
     assert.equal(new Set(products).size, products.length);
-    assert.equal(products.includes(aura["--aura-brand-action"]), false);
+    assert.equal(products.includes(action), false);
   }
 });

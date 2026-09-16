@@ -278,8 +278,7 @@ test("appearance uses styled menus, groups CharterAura modes, and preserves keyb
     const channels = [1, 3, 5].map((index) =>
       Number.parseInt(expanded.slice(index, index + 2), 16),
     );
-    expect(new Set(channels).size).toBe(1);
-    expect(theme === "light" ? channels[0]! < 32 : channels[0]! > 239).toBe(true);
+    expect(channels[0]! > channels[1]! && channels[1]! > channels[2]!).toBe(true);
   }
 });
 

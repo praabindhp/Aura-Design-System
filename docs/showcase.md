@@ -4,7 +4,7 @@ The documentation application in `apps/docs` contains the PADS showcase, a
 searchable component explorer, foundations, setup guidance, and Storybook. It
 consumes public package entry points and generated tokens. Its appearance
 refinements include an additive `DropdownSelect` primitive, a
-monochrome Aura token recipe, and simplified input focus. These consumer-visible
+premium gold Aura token recipe, and simplified input focus. These consumer-visible
 changes have a Changeset; existing native `Select` and brand recipe keys remain
 compatible.
 
@@ -18,7 +18,7 @@ remain separate from the base package.
 The canonical source provides six recipes across five apps: Aura, VerbAura,
 CognAura, RendAura, and CharterAura with standard and intermediate modes. The app
 selector and identity strip show CharterAura once; a separate mode selector
-chooses its recipe. Aura has monochrome brand accents and the hero uses a subtle
+chooses its recipe. Aura has premium gold brand accents and the hero uses a subtle
 gradient derived from the active brand glow token. Every recipe supports light
 and dark appearances; system mode follows the browser preference. The showcase
 starts with VerbAura's warm action color in dark mode, and stores only the

@@ -934,21 +934,21 @@
             "action": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.066667, 0.066667, 0.066667],
+                "components": [0.466667, 0.337255, 0.0],
                 "alpha": 1
               }
             },
             "hover": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.160784, 0.160784, 0.160784],
+                "components": [0.4, 0.282353, 0.0],
                 "alpha": 1
               }
             },
             "active": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.0, 0.0, 0.0],
+                "components": [0.368627, 0.262745, 0.0],
                 "alpha": 1
               }
             },
@@ -965,28 +965,28 @@
             "soft": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.956863, 0.956863, 0.956863],
+                "components": [0.988235, 0.960784, 0.87451],
                 "alpha": 1
               }
             },
             "subtle": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.898039, 0.898039, 0.898039],
+                "components": [0.960784, 0.898039, 0.721569],
                 "alpha": 1
               }
             },
             "borderStrong": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.45098, 0.45098, 0.45098],
+                "components": [0.541176, 0.396078, 0.0],
                 "alpha": 1
               }
             },
             "glow": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.066667, 0.066667, 0.066667],
+                "components": [0.784314, 0.611765, 0.196078],
                 "alpha": 0.16
               }
             }
@@ -998,7 +998,7 @@
             "halo": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.066667, 0.066667, 0.066667],
+                "components": [0.466667, 0.337255, 0.0],
                 "alpha": 0.16
               }
             }
@@ -1023,21 +1023,21 @@
             "action": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.980392, 0.980392, 0.980392],
+                "components": [0.945098, 0.780392, 0.356863],
                 "alpha": 1
               }
             },
             "hover": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.898039, 0.898039, 0.898039],
+                "components": [0.968627, 0.843137, 0.513725],
                 "alpha": 1
               }
             },
             "active": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.831373, 0.831373, 0.831373],
+                "components": [0.839216, 0.658824, 0.235294],
                 "alpha": 1
               }
             },
@@ -1047,35 +1047,35 @@
             "onSolid": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.039216, 0.039216, 0.039216],
+                "components": [0.141176, 0.101961, 0.0],
                 "alpha": 1
               }
             },
             "soft": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.090196, 0.090196, 0.090196],
+                "components": [0.168627, 0.129412, 0.05098],
                 "alpha": 1
               }
             },
             "subtle": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.14902, 0.14902, 0.14902],
+                "components": [0.231373, 0.176471, 0.062745],
                 "alpha": 1
               }
             },
             "borderStrong": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.639216, 0.639216, 0.639216],
+                "components": [0.85098, 0.713725, 0.341176],
                 "alpha": 1
               }
             },
             "glow": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.980392, 0.980392, 0.980392],
+                "components": [0.945098, 0.780392, 0.356863],
                 "alpha": 0.12
               }
             }
@@ -1087,7 +1087,7 @@
             "halo": {
               "$value": {
                 "colorSpace": "srgb",
-                "components": [0.980392, 0.980392, 0.980392],
+                "components": [0.945098, 0.780392, 0.356863],
                 "alpha": 0.16
               }
             }
@@ -1105,7 +1105,7 @@
           }
         }
       },
-      "$description": "Premium monochrome identity: black on light surfaces, white on dark surfaces."
+      "$description": "Premium gold identity tuned for contrast on light and dark surfaces."
     },
     "verbaura": {
       "light": {
