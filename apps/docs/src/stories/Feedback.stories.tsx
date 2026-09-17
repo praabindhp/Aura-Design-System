@@ -8,6 +8,7 @@ import {
   ErrorState,
   Heading,
   IconButton,
+  Loader,
   LoadingState,
   Stack,
   Tooltip,
@@ -95,6 +96,30 @@ export const StateMatrix: Story = {
       </StoryPage>
     );
   },
+};
+
+export const PremiumLoader: Story = {
+  render: () => (
+    <StoryPage>
+      <StoryIntro
+        eyebrow="Feedback · Loading"
+        title="A calm signal while work takes shape"
+        description="Loader gives route and content boundaries a branded progress treatment, while preserving visible status text and reduced-motion support."
+      />
+      <div className="docsGrid">
+        <div className="docsDemoPanel">
+          <Loader label="Preparing components" size="sm" />
+        </div>
+        <div className="docsDemoPanel">
+          <Loader
+            label="Opening your workspace"
+            description="Bringing the latest details into focus."
+            size="lg"
+          />
+        </div>
+      </div>
+    </StoryPage>
+  ),
 };
 
 export const OverlayControls: Story = {

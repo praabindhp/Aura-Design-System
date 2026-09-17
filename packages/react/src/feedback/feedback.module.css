@@ -108,8 +108,126 @@
   min-block-size: 10rem;
   display: grid;
   place-items: center;
-  gap: var(--aura-space-3);
+}
+
+.loader {
+  display: inline-grid;
+  justify-items: center;
+  gap: var(--aura-space-4);
   color: var(--aura-text-secondary);
+  text-align: center;
+}
+
+.loaderMark {
+  position: relative;
+  inline-size: var(--aura-size-control);
+  block-size: var(--aura-size-control);
+  display: grid;
+  place-items: center;
+}
+
+.loader[data-size="sm"] .loaderMark {
+  inline-size: var(--aura-size-control-sm);
+  block-size: var(--aura-size-control-sm);
+}
+
+.loader[data-size="lg"] .loaderMark {
+  inline-size: var(--aura-size-control-lg);
+  block-size: var(--aura-size-control-lg);
+}
+
+.loaderMark::before,
+.loaderOrbit {
+  position: absolute;
+  inset: 0;
+  content: "";
+  border: var(--aura-border-width-thin) solid var(--aura-brand-subtle);
+  border-radius: var(--aura-radius-pill);
+}
+
+.loaderMark::before {
+  box-shadow: 0 0 var(--aura-space-8) var(--aura-brand-glow);
+}
+
+.loaderOrbit {
+  border-block-start-color: var(--aura-brand-action);
+  border-inline-end-color: var(--aura-brand-border-strong);
+  animation: aura-loader-orbit var(--aura-motion-ambient) linear infinite;
+}
+
+.loaderOrbit::after {
+  position: absolute;
+  inset-block-start: calc(var(--aura-space-1) * -1);
+  inset-inline-start: 50%;
+  inline-size: var(--aura-space-2);
+  block-size: var(--aura-space-2);
+  content: "";
+  border-radius: var(--aura-radius-pill);
+  background: var(--aura-brand-action);
+  box-shadow: 0 0 var(--aura-space-3) var(--aura-brand-glow);
+  transform: translateX(-50%);
+}
+
+.loaderCore {
+  inline-size: var(--aura-space-3);
+  block-size: var(--aura-space-3);
+  border: var(--aura-border-width-thin) solid var(--aura-brand-border-strong);
+  border-radius: var(--aura-radius-sm);
+  background: var(--aura-brand-soft);
+  transform: rotate(45deg);
+  animation: aura-loader-core var(--aura-motion-ambient)
+    var(--aura-motion-easing-emphasized) infinite;
+}
+
+.loaderCopy {
+  display: grid;
+  gap: var(--aura-space-1);
+  max-inline-size: var(--aura-size-reading);
+}
+
+.loaderCopy :where(strong) {
+  color: var(--aura-text-primary);
+  font-size: var(--aura-font-size-body);
+  font-weight: var(--aura-font-weight-medium);
+}
+
+.loaderCopy :where(span) {
+  color: var(--aura-text-muted);
+  font-size: var(--aura-font-size-caption);
+  line-height: var(--aura-line-height-body);
+}
+
+@keyframes aura-loader-orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes aura-loader-core {
+  50% {
+    transform: rotate(135deg) scale(0.78);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loaderOrbit,
+  .loaderCore {
+    animation: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .loaderMark::before,
+  .loaderOrbit,
+  .loaderCore {
+    border-color: Highlight;
+    box-shadow: none;
+  }
+
+  .loaderOrbit::after {
+    background: Highlight;
+    box-shadow: none;
+  }
 }
 
 .modal:global(.ant-modal-root) :global(.ant-modal-mask),

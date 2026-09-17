@@ -22,7 +22,7 @@ or workflow state, keep the behavior in that product and compose PADS parts.
 Primitives own one focused visual or interaction contract. Examples include
 Button, IconButton, Link, Text, Heading, ProductMark, Avatar, Badge, Divider,
 Field, Input, Textarea, Checkbox, Radio, Switch, Select, Combobox, Segmented,
-Progress, Spinner, Skeleton, Tooltip, Popover, Menu, Dialog, Drawer, Tabs,
+Progress, Spinner, Loader, Skeleton, Tooltip, Popover, Menu, Dialog, Drawer, Tabs,
 Pagination, Table, and Upload.
 
 Complex ARIA behavior belongs here so product teams do not rebuild it.

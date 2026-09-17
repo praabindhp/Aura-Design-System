@@ -101,6 +101,9 @@ export const catalog: CatalogEntry[] = [
     ErrorState: "Describe a failure and make retrying straightforward.",
     LoadingState: "An accessible loading message for a whole surface.",
   }),
+  ...group("Feedback", "feedback-states-and-overlays--premium-loader", {
+    Loader: "A calm, branded progress treatment for route and content boundaries.",
+  }),
   ...group("Feedback", "feedback-states-and-overlays--overlay-controls", {
     Dialog: "A focused layer with labelled content and managed focus.",
     Drawer: "Supporting content in a dismissible side panel.",

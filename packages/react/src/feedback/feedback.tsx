@@ -7,7 +7,13 @@ import {
   X,
   XCircle,
 } from "lucide-react";
-import { useCallback, useId, type ReactElement, type ReactNode } from "react";
+import {
+  useCallback,
+  useId,
+  type HTMLAttributes,
+  type ReactElement,
+  type ReactNode,
+} from "react";
 import {
   AntApp,
   AntDrawer,
@@ -15,7 +21,7 @@ import {
   AntPopconfirm,
   AntTooltip,
 } from "../internal/antd.js";
-import { Button, Spinner } from "../primitives/index.js";
+import { Button } from "../primitives/index.js";
 import { cx } from "../types.js";
 import styles from "./feedback.module.css";
 
@@ -139,8 +145,49 @@ export function ErrorState({
 export function LoadingState({ label = "Loading" }: { readonly label?: string }) {
   return (
     <div className={styles.loading}>
-      <Spinner label={label} />
-      <span>{label}</span>
+      <Loader label={label} size="lg" />
+    </div>
+  );
+}
+
+export interface LoaderProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+  /** A concise description of the work in progress. */
+  readonly label?: ReactNode;
+  /** Optional supporting context for waits that may take longer. */
+  readonly description?: ReactNode;
+  readonly size?: "sm" | "md" | "lg";
+}
+
+/**
+ * A branded, accessible loading indicator for content and route boundaries.
+ * Use Spinner inside compact controls and Loader when the wait owns a surface.
+ */
+export function Loader({
+  className,
+  description,
+  label = "Loading",
+  size = "md",
+  ...props
+}: LoaderProps) {
+  const labelId = useId();
+  return (
+    <div
+      {...props}
+      aria-busy="true"
+      aria-labelledby={labelId}
+      aria-live="polite"
+      className={cx(styles.loader, className)}
+      data-size={size}
+      role="status"
+    >
+      <span aria-hidden className={styles.loaderMark}>
+        <span className={styles.loaderOrbit} />
+        <span className={styles.loaderCore} />
+      </span>
+      <span className={styles.loaderCopy}>
+        <strong id={labelId}>{label}</strong>
+        {description ? <span>{description}</span> : null}
+      </span>
     </div>
   );
 }

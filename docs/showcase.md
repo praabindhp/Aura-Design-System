@@ -10,16 +10,16 @@ compatible.
 
 ## Design-system review
 
-The implemented public library contains 89 components and four runtime helpers
+The implemented public library contains 90 components and four runtime helpers
 across React, charts, and rich content. The five published packages retain their
 existing dependency direction. The optional charts and rich-content packages
 remain separate from the base package.
 
 The canonical source provides six recipes across five apps: Aura, VerbAura,
-CognAura, RendAura, and CharterAura with standard and intermediate modes. The app
-selector and identity strip show CharterAura once; a separate mode selector
-chooses its recipe. Aura has premium gold brand accents and the hero uses a subtle
-gradient derived from the active brand glow token. Every recipe supports light
+CognAura, RendAura, and CharterAura. The public showcase presents CharterAura as
+one emerald identity while retaining the intermediate recipe for compatibility.
+Aura has dimensional premium-gold accents and the hero uses a layered gradient
+derived from the active brand tokens. Every recipe supports light
 and dark appearances; system mode follows the browser preference. The showcase
 starts with VerbAura's warm action color in dark mode, and stores only the
 visitor's brand and theme preferences locally.

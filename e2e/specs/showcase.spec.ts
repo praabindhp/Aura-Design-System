@@ -87,12 +87,13 @@ test.describe("PADS public showcase", () => {
     ).toBeVisible();
     await expect(page.getByText("Recovered", { exact: true })).toBeHidden();
     await page.getByRole("button", { name: "Remove example", exact: true }).click();
-    await page.getByRole("button", { name: "Cancel", exact: true }).click();
+    const confirmation = page.getByRole("tooltip");
+    await confirmation.getByRole("button", { name: "Cancel", exact: true }).click();
     await expect(page.getByText("Remove the example?", { exact: true })).toBeHidden();
+    await expect(confirmation).toBeHidden();
     await expect(page.getByText("Example removed", { exact: true })).toBeHidden();
     await page.getByRole("button", { name: "Remove example", exact: true }).click();
-    await page
-      .getByRole("tooltip")
+    await confirmation
       .getByRole("button", { name: "Remove example", exact: true })
       .click();
     await expect(page.getByText("Example removed", { exact: true })).toBeVisible();
@@ -161,14 +162,7 @@ test.describe("PADS public showcase", () => {
       browserName !== "chromium",
       "The full appearance matrix runs once; interactions run in all engines.",
     );
-    for (const brand of [
-      "aura",
-      "verbaura",
-      "cognaura",
-      "rendaura",
-      "charteraura",
-      "charteraura-intermediate",
-    ]) {
+    for (const brand of ["aura", "verbaura", "cognaura", "rendaura", "charteraura"]) {
       await chooseAppearance(page, "Brand", brand);
       for (const theme of ["light", "dark"]) {
         await chooseAppearance(page, "Theme", theme);
@@ -214,7 +208,7 @@ test.describe("PADS public showcase", () => {
   });
 });
 
-test("appearance uses styled menus, groups CharterAura modes, and preserves keyboard focus", async ({
+test("appearance uses styled menus, keeps CharterAura singular, and preserves keyboard focus", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -241,28 +235,16 @@ test("appearance uses styled menus, groups CharterAura modes, and preserves keyb
   await page.keyboard.press("Escape");
   await expect(brand).toHaveAttribute("aria-expanded", "false");
   await expect(brand).toBeFocused();
-  await chooseAppearance(page, "Brand", "charteraura-intermediate");
-  await expect(page.locator("html")).toHaveAttribute(
-    "data-aura-brand",
-    "charteraura-intermediate",
-  );
-  await expect(page.getByRole("combobox", { name: "CharterAura mode" })).toBeVisible();
+  await chooseAppearance(page, "Brand", "charteraura");
+  await expect(page.locator("html")).toHaveAttribute("data-aura-brand", "charteraura");
+  await expect(page.getByRole("combobox", { name: "CharterAura mode" })).toHaveCount(0);
   await page.setViewportSize({ width: 320, height: 700 });
   await expect
     .poll(() => page.evaluate(() => document.documentElement.scrollWidth))
     .toBe(320);
-  await page.getByRole("combobox", { name: "CharterAura mode" }).click();
-  await expect(
-    page.getByRole("option", { name: "Intermediate", exact: true }),
-  ).toBeVisible();
-  await page.keyboard.press("Escape");
   await page.reload();
-  await expect(page.locator("html")).toHaveAttribute(
-    "data-aura-brand",
-    "charteraura-intermediate",
-  );
+  await expect(page.locator("html")).toHaveAttribute("data-aura-brand", "charteraura");
   await chooseAppearance(page, "Brand", "aura");
-  await expect(page.getByRole("combobox", { name: "CharterAura mode" })).toHaveCount(0);
   for (const theme of ["light", "dark"]) {
     await chooseAppearance(page, "Theme", theme);
     await expect(page.locator("html")).toHaveAttribute("data-aura-theme", theme);

@@ -279,24 +279,49 @@
 }
 
 .legendMark {
+  position: relative;
   flex: 0 0 auto;
-  inline-size: var(--aura-space-3);
-  block-size: var(--aura-space-3);
+  inline-size: var(--aura-space-6);
+  block-size: var(--aura-border-width-strong);
+  color: var(--aura-color-foreground-muted);
+  background: currentcolor;
   border-radius: var(--aura-radius-pill);
 }
 
+.legendMark::after {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: var(--aura-space-2);
+  block-size: var(--aura-space-2);
+  content: "";
+  border-radius: var(--aura-radius-pill);
+  background: currentcolor;
+  transform: translate(-50%, -50%);
+}
+
 .legendMark[data-pattern="1"] {
-  border-radius: 0;
-  transform: rotate(45deg);
+  background: repeating-linear-gradient(
+    90deg,
+    currentcolor 0 var(--aura-space-2),
+    transparent var(--aura-space-2) var(--aura-space-3)
+  );
 }
 
 .legendMark[data-pattern="2"] {
-  border-radius: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    currentcolor 0 var(--aura-space-1),
+    transparent var(--aura-space-1) var(--aura-space-2)
+  );
 }
 
 .legendMark[data-pattern="3"] {
-  border: var(--aura-border-width-strong) solid currentcolor;
-  background: transparent;
+  background: repeating-linear-gradient(
+    90deg,
+    currentcolor 0 var(--aura-space-3),
+    transparent var(--aura-space-3) var(--aura-space-4)
+  );
 }
 
 .legendLabel {
@@ -343,5 +368,9 @@
   .radialIndicator {
     color: Highlight;
     stroke: Highlight;
+  }
+
+  .legendMark {
+    background: CanvasText;
   }
 }

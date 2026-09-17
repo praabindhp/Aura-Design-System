@@ -40,7 +40,7 @@ component.
 
 - Badge and Tag
 - Progress and meter
-- Spinner and Skeleton
+- Spinner, Loader, and Skeleton
 - Tooltip
 - Toast/notification adapter
 - Inline message and alert

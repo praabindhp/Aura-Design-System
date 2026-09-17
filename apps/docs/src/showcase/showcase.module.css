@@ -5,7 +5,7 @@
 
 .site {
   min-block-size: 100dvh;
-  padding-block-end: calc(var(--aura-size-header) + var(--aura-space-8));
+  padding-block-end: var(--aura-space-8);
   background: var(--aura-bg-app);
   color: var(--aura-text-primary);
 }
@@ -43,7 +43,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--aura-space-6);
+  gap: var(--aura-space-4);
   border-block-end: var(--aura-border-width-thin) solid var(--aura-border-decorative);
 }
 
@@ -115,6 +115,17 @@
   gap: var(--aura-space-3);
 }
 
+.routeView {
+  animation: showcase-reveal var(--aura-motion-normal)
+    var(--aura-motion-easing-standard) both;
+}
+
+.routeLoader {
+  min-block-size: calc(var(--aura-size-header) * 7);
+  display: grid;
+  place-items: center;
+}
+
 .githubLink {
   display: inline-flex;
   align-items: center;
@@ -162,6 +173,48 @@
     var(--aura-bg-app) 20%,
     transparent 75%
   );
+}
+
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  inset-block-end: var(--aura-space-6);
+  inset-inline: 12%;
+  block-size: var(--aura-border-width-thin);
+  content: "";
+  background: linear-gradient(90deg, transparent, var(--aura-brand-glow), transparent);
+}
+
+.site[data-showcase-brand="aura"] .hero::before {
+  background:
+    radial-gradient(
+      ellipse 48% 52% at 28% 36%,
+      var(--aura-brand-glow),
+      transparent 78%
+    ),
+    radial-gradient(
+      ellipse 48% 52% at 72% 40%,
+      var(--aura-brand-glow),
+      transparent 78%
+    ),
+    radial-gradient(ellipse 38% 32% at 50% 68%, var(--aura-brand-glow), transparent 82%);
+}
+
+.site[data-showcase-brand="aura"] .hero :where(h1 span) {
+  color: transparent;
+  background: linear-gradient(
+    110deg,
+    var(--aura-brand-border-strong),
+    var(--aura-brand-hover),
+    var(--aura-brand-action)
+  );
+  background-clip: text;
+  text-shadow: 0 0 var(--aura-space-16) var(--aura-brand-glow);
+}
+
+.site[data-showcase-brand="aura"][data-showcase-mode="dark"] .hero::before {
+  opacity: 1;
+  filter: saturate(1.2);
 }
 
 .release {
@@ -270,9 +323,9 @@
 
 .mosaic {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: var(--aura-space-4);
-  align-items: start;
+  align-items: stretch;
 }
 
 .demoCard {
@@ -283,6 +336,16 @@
   background: var(--aura-bg-surface);
   padding: var(--aura-space-5);
   overflow: clip;
+  transition:
+    transform var(--aura-motion-normal) var(--aura-motion-easing-standard),
+    border-color var(--aura-motion-fast) var(--aura-motion-easing-standard),
+    box-shadow var(--aura-motion-normal) var(--aura-motion-easing-standard);
+}
+
+.demoCard:hover {
+  border-color: var(--aura-brand-subtle);
+  box-shadow: var(--aura-shadow-sm);
+  transform: translateY(calc(var(--aura-space-1) * -1));
 }
 
 .demoCardHeader {
@@ -321,9 +384,14 @@
   max-inline-size: 100%;
 }
 
+.actionsCard {
+  grid-column: 1 / span 4;
+  grid-row: 1;
+}
+
 .chartCard {
-  grid-column: span 2;
-  grid-row: span 1;
+  grid-column: 5 / span 8;
+  grid-row: 1 / span 2;
 }
 
 .metricLine {
@@ -355,8 +423,8 @@
 }
 
 .formCard {
-  grid-column: 4;
-  grid-row: 1 / span 2;
+  grid-column: 1 / span 4;
+  grid-row: 3;
 }
 
 .form {
@@ -365,7 +433,13 @@
 }
 
 .conversationCard {
-  grid-column: 2 / span 2;
+  grid-column: 5 / span 8;
+  grid-row: 3;
+}
+
+.preferencesCard {
+  grid-column: 1 / span 4;
+  grid-row: 2;
 }
 
 .conversationIntro {
@@ -405,11 +479,15 @@
 }
 
 .identityCard {
-  grid-column: 4;
+  grid-column: span 12;
+  grid-row: 4;
 }
 
-.identityCard :where(p) {
-  margin-block-start: var(--aura-space-4);
+.identityLayout {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--aura-space-6);
 }
 
 .teamMore {
@@ -421,9 +499,8 @@
   display: flex;
   align-items: center;
   gap: var(--aura-space-2);
-  padding-block-start: var(--aura-space-4);
-  margin-block-start: var(--aura-space-5);
-  border-block-start: var(--aura-border-width-thin) solid var(--aura-border-decorative);
+  padding-inline-start: var(--aura-space-6);
+  border-inline-start: var(--aura-border-width-thin) solid var(--aura-border-decorative);
   font-size: var(--aura-font-size-caption);
   color: var(--aura-text-muted);
 }
@@ -508,20 +585,13 @@
 }
 
 .appearance {
-  position: fixed;
-  inset-block-end: var(--aura-space-5);
-  inset-inline-start: 50%;
-  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: var(--aura-space-5);
-  padding: var(--aura-space-3) var(--aura-space-5);
-  background: var(--aura-bg-elevated);
-  border: var(--aura-border-width-thin) solid var(--aura-border-strong);
-  border-radius: var(--aura-radius-xl);
-  box-shadow: var(--aura-shadow-lg);
-  z-index: var(--aura-z-sticky);
-  max-inline-size: calc(100% - var(--aura-space-6));
+  gap: var(--aura-space-3);
+  padding: var(--aura-space-2);
+  background: var(--aura-bg-subtle);
+  border: var(--aura-border-width-thin) solid var(--aura-border-decorative);
+  border-radius: var(--aura-radius-lg);
 }
 
 .appearanceLabel {
@@ -534,30 +604,24 @@
 }
 
 .appearanceControl {
-  min-inline-size: var(--aura-size-control);
   display: grid;
-  gap: var(--aura-space-2);
+  gap: var(--aura-space-1);
   font-size: var(--aura-font-size-caption);
   color: var(--aura-text-muted);
 }
 
 .appearanceControl > :where(div) {
-  inline-size: var(--aura-size-sidebar-collapsed);
-  min-inline-size: calc(var(--aura-space-16) * 2);
-  max-inline-size: var(--aura-size-sidebar-expanded);
+  inline-size: calc(var(--aura-space-16) * 2);
+  min-inline-size: 0;
 }
 
 .appearanceControl:first-of-type > :where(div) {
-  min-inline-size: calc(var(--aura-space-16) * 2 + var(--aura-space-8));
+  inline-size: calc(var(--aura-space-16) * 2 + var(--aura-space-8));
 }
 
 .appearanceControl :where(label) {
   font-size: var(--aura-font-size-caption);
   line-height: var(--aura-line-height-compact);
-}
-
-.charterMode {
-  min-inline-size: calc(var(--aura-space-16) * 2);
 }
 
 .skipLink {
@@ -1209,19 +1273,27 @@
     justify-content: center;
   }
 
+  .appearance {
+    order: 4;
+    inline-size: 100%;
+    justify-content: flex-end;
+  }
+
   .mosaic {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .chartCard {
-    grid-column: 2;
-    grid-row: span 2;
+  .actionsCard,
+  .formCard,
+  .preferencesCard,
+  .conversationCard {
+    grid-column: span 1;
+    grid-row: auto;
   }
 
-  .formCard,
-  .conversationCard,
+  .chartCard,
   .identityCard {
-    grid-column: auto;
+    grid-column: span 2;
     grid-row: auto;
   }
 
@@ -1307,9 +1379,27 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .chartCard {
-    grid-column: auto;
+  .actionsCard,
+  .chartCard,
+  .formCard,
+  .preferencesCard,
+  .conversationCard,
+  .identityCard {
+    grid-column: span 1;
     grid-row: auto;
+  }
+
+  .identityLayout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--aura-space-4);
+  }
+
+  .identityFooter {
+    padding-block-start: var(--aura-space-4);
+    padding-inline-start: 0;
+    border-block-start: var(--aura-border-width-thin) solid
+      var(--aura-border-decorative);
+    border-inline-start: 0;
   }
 
   .brandSection {
@@ -1335,17 +1425,8 @@
   }
 
   .appearance {
-    position: sticky;
-    inset-block-end: 0;
-    inset-inline-start: auto;
-    transform: none;
-    margin-inline: auto;
-    margin-block-start: var(--aura-space-6);
-    padding: var(--aura-space-3);
-    gap: var(--aura-space-3);
-    max-inline-size: 100%;
-    border-radius: 0;
-    flex-wrap: wrap;
+    padding: var(--aura-space-2);
+    justify-content: stretch;
   }
 
   .appearanceLabel {
@@ -1363,22 +1444,11 @@
     flex: 1.5;
   }
 
-  .appearanceControl.charterMode {
-    flex: 1 1 100%;
-    order: 1;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: center;
-  }
-
   .appearanceControl > :where(div),
   .appearanceControl:first-of-type > :where(div) {
     inline-size: 100%;
     min-inline-size: 0;
     max-inline-size: 100%;
-  }
-
-  .site {
-    padding-block-end: 0;
   }
 
   .catalogGrid {
@@ -1428,34 +1498,11 @@
   .catalogSidebar :where(button[aria-pressed="true"]) {
     outline: var(--aura-border-width-strong) solid Highlight;
   }
-}
 
-.mosaicColumn {
-  display: grid;
-  gap: var(--aura-space-4);
-  min-inline-size: 0;
-}
-
-.mosaicColumn :where(.demoCard) {
-  grid-column: auto;
-  grid-row: auto;
-}
-
-@media (width <= 64rem) {
-  .mosaic {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .mosaicColumn:last-child {
-    grid-column: 1 / -1;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (width <= 40rem) {
-  .mosaic,
-  .mosaicColumn:last-child {
-    grid-template-columns: minmax(0, 1fr);
+  .site[data-showcase-brand="aura"] .hero :where(h1 span) {
+    color: CanvasText;
+    background: none;
+    text-shadow: none;
   }
 }
 
@@ -1477,4 +1524,30 @@
 
 .steps > section {
   min-inline-size: 0;
+}
+
+@keyframes showcase-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(var(--aura-space-2));
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .routeView {
+    animation: none;
+  }
+
+  .demoCard {
+    transition: none;
+  }
+
+  .demoCard:hover {
+    transform: none;
+  }
 }

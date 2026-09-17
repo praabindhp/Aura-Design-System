@@ -48,4 +48,4 @@ model, with the smaller documented prop surface above.
 The colocated `Forms/Styled dropdowns` stories show normal, selected, disabled,
 and validation states, alongside the single-boundary text controls. Review them
 with Storybook's brand, theme, and viewport controls. The showcase uses the same
-primitive for brand, theme, and CharterAura mode choices.
+primitive for compact brand and theme choices.

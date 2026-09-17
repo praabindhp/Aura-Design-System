@@ -10,6 +10,7 @@ import {
   Drawer,
   EmptyState,
   ErrorState,
+  Loader,
   LoadingState,
   Tooltip,
   useAuraFeedback,
@@ -84,6 +85,22 @@ describe("feedback", () => {
     rerender(<LoadingState label="Loading documents" />);
     expect(screen.getByText("Loading documents")).toBeInTheDocument();
     expect(screen.getAllByRole("status")).toHaveLength(1);
+  });
+
+  it("describes branded content loading without relying on motion", () => {
+    render(
+      <Loader
+        label="Preparing your workspace"
+        description="Bringing components into focus"
+        size="lg"
+      />,
+    );
+    const loader = screen.getByRole("status", {
+      name: "Preparing your workspace",
+    });
+    expect(loader).toHaveAttribute("aria-busy", "true");
+    expect(loader).toHaveTextContent("Preparing your workspace");
+    expect(loader).toHaveTextContent("Bringing components into focus");
   });
 
   it("opens an accessible dialog and closes it from the Ant close control", async () => {

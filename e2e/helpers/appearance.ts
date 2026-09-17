@@ -6,7 +6,6 @@ const labels: Record<string, string> = {
   cognaura: "CognAura",
   rendaura: "RendAura",
   charteraura: "CharterAura",
-  "charteraura-intermediate": "CharterAura",
   dark: "Dark",
   light: "Light",
   system: "System",
@@ -20,9 +19,6 @@ export async function chooseAppearance(
   const optionLabel = labels[value];
   if (!optionLabel) throw new Error(`Unknown appearance: ${value}`);
   await chooseOption(page, label, optionLabel);
-  if (value === "charteraura-intermediate") {
-    await chooseOption(page, "CharterAura mode", "Intermediate");
-  }
 }
 
 async function chooseOption(page: Page, label: string, option: string) {

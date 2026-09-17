@@ -5,10 +5,12 @@ export {
   Drawer,
   EmptyState,
   ErrorState,
+  Loader,
   LoadingState,
   Tooltip,
   useAuraFeedback,
   type AuraFeedback,
   type DialogProps,
   type FeedbackTone,
+  type LoaderProps,
 } from "./feedback.js";
