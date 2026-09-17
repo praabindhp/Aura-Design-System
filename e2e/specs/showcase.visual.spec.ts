@@ -58,3 +58,20 @@ test("PADS component explorer · narrow", async ({ page }) => {
     maxDiffPixelRatio: 0.01,
   });
 });
+
+test("PADS embedded settings story · content height", async ({ page }) => {
+  await page.setViewportSize({ width: 1200, height: 900 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto(`${site}#/components/SettingsLayout`);
+  const frame = page.locator('iframe[title="SettingsLayout Storybook example"]');
+  await frame.scrollIntoViewIfNeeded();
+  await expect(
+    frame
+      .contentFrame()
+      .getByRole("heading", { name: "Predictable preference architecture" }),
+  ).toBeVisible();
+  await expect(frame).toHaveScreenshot("settings-layout-embedded.png", {
+    animations: "disabled",
+    maxDiffPixelRatio: 0.01,
+  });
+});

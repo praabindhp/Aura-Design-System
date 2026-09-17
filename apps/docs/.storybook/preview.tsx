@@ -55,10 +55,19 @@ const preview: Preview = {
         ? context.globals.theme
         : "light";
       const fullscreen = context.parameters.layout === "fullscreen";
+      const embedded =
+        typeof window !== "undefined" &&
+        new URLSearchParams(window.location.search).get("embed") === "1";
+      const canvasClassName = [
+        fullscreen ? "docsCanvas docsCanvasFull" : "docsCanvas",
+        embedded ? "docsCanvasEmbedded" : "",
+      ]
+        .filter(Boolean)
+        .join(" ");
 
       return (
         <AuraProvider brand={brand} storageKey={null} theme={theme}>
-          <div className={fullscreen ? "docsCanvas docsCanvasFull" : "docsCanvas"}>
+          <div className={canvasClassName}>
             <Story />
           </div>
         </AuraProvider>

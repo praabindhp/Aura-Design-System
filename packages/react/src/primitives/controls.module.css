@@ -58,6 +58,7 @@
 
 .button[data-variant="primary"]:hover:not(:disabled),
 .linkButton[data-variant="primary"]:hover {
+  color: var(--aura-brand-on-solid);
   border-color: var(--aura-brand-hover);
   background: var(--aura-brand-hover);
 }
@@ -71,6 +72,7 @@
 
 .button[data-variant="secondary"]:hover:not(:disabled),
 .linkButton[data-variant="secondary"]:hover {
+  color: var(--aura-text-primary);
   border-color: var(--aura-brand-border-strong);
   background: var(--aura-bg-hover);
 }
@@ -97,6 +99,7 @@
 
 .button[data-variant="danger"]:hover:not(:disabled),
 .linkButton[data-variant="danger"]:hover {
+  color: var(--aura-status-danger-on-solid);
   filter: brightness(0.92);
 }
 

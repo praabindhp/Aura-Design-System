@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Badge,
   Button,
@@ -18,6 +18,66 @@ import {
 } from "./catalog";
 import { Preview } from "./Previews";
 import styles from "./showcase.module.css";
+
+function StoryFrame({
+  brand,
+  mode,
+  name,
+  story,
+}: {
+  readonly brand: string;
+  readonly mode: string;
+  readonly name: string;
+  readonly story: string;
+}) {
+  const frame = useRef<HTMLIFrameElement>(null);
+  const [height, setHeight] = useState<number>();
+  const src = `./storybook/iframe.html?id=${story}&viewMode=story&embed=1&globals=brand:${brand};theme:${mode}`;
+
+  useEffect(() => {
+    const iframe = frame.current;
+    if (!iframe) return;
+    let observer: ResizeObserver | undefined;
+    const connect = () => {
+      observer?.disconnect();
+      const document = iframe.contentDocument;
+      if (!document) return;
+      const update = () => {
+        const nextHeight = Math.ceil(
+          Math.max(
+            document.documentElement.scrollHeight,
+            document.body?.scrollHeight ?? 0,
+          ),
+        );
+        if (nextHeight > 0) setHeight(nextHeight);
+      };
+      if (typeof ResizeObserver !== "undefined") {
+        observer = new ResizeObserver(update);
+        observer.observe(document.documentElement);
+        if (document.body) observer.observe(document.body);
+      }
+      update();
+    };
+    setHeight(undefined);
+    iframe.addEventListener("load", connect);
+    if (iframe.contentDocument?.readyState === "complete") connect();
+    return () => {
+      iframe.removeEventListener("load", connect);
+      observer?.disconnect();
+    };
+  }, [src]);
+
+  return (
+    <iframe
+      ref={frame}
+      className={styles.storyFrame}
+      height={height}
+      loading="lazy"
+      src={src}
+      title={`${name} Storybook example`}
+    />
+  );
+}
 
 export default function Explorer({ route }: { route: string }) {
   const [query, setQuery] = useState("");
@@ -112,12 +172,12 @@ export default function Explorer({ route }: { route: string }) {
             The canvas includes related components so you can see how they work
             together.
           </p>
-          <iframe
+          <StoryFrame
             key={`${entry.story}-${brand}-${mode}`}
-            className={styles.storyFrame}
-            title={`${entry.name} Storybook example`}
-            src={`./storybook/iframe.html?id=${entry.story}&viewMode=story&globals=brand:${brand};theme:${mode}`}
-            loading="lazy"
+            brand={brand}
+            mode={mode}
+            name={entry.name}
+            story={entry.story}
           />
         </section>
       </div>

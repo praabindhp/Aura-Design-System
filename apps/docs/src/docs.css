@@ -1,6 +1,7 @@
 @layer aura-docs {
   .docsCanvas {
     min-block-size: 100vh;
+    box-sizing: border-box;
     padding: var(--aura-space-8);
     color: var(--aura-text-primary);
     background:
@@ -10,6 +11,10 @@
 
   .docsCanvasFull {
     padding: 0;
+  }
+
+  .docsCanvasEmbedded {
+    min-block-size: 0;
   }
 
   .docsPage {

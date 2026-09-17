@@ -121,14 +121,53 @@ test.describe("PADS public showcase", () => {
     await expect(confirmation).toBeHidden();
     await expect(page.getByText("Example removed", { exact: true })).toBeHidden();
     await page.getByRole("button", { name: "Remove example", exact: true }).click();
-    await confirmation
-      .getByRole("button", { name: "Remove example", exact: true })
-      .click();
+    const confirmRemoval = confirmation.getByRole("button", {
+      name: "Remove example",
+      exact: true,
+    });
+    await expect(confirmRemoval).toBeVisible();
+    await confirmRemoval.focus();
+    await expect(confirmRemoval).toBeFocused();
+    await page.keyboard.press("Enter");
     await expect(page.getByText("Example removed", { exact: true })).toBeVisible();
     await page.goto(`${site}#/components/LoadingState`);
     await expect(
       page.getByRole("status", { name: "Gathering your workspace" }),
     ).toBeVisible();
+  });
+
+  test("fits embedded stories to their content without nested scrolling", async ({
+    page,
+  }) => {
+    await page.goto(`${site}#/components/SettingsLayout`);
+    const frame = page.locator('iframe[title="SettingsLayout Storybook example"]');
+    await frame.scrollIntoViewIfNeeded();
+    await expect(
+      frame
+        .contentFrame()
+        .getByRole("heading", { name: "Predictable preference architecture" }),
+    ).toBeVisible();
+    await expect
+      .poll(() =>
+        frame.evaluate((element) => {
+          const iframe = element as HTMLIFrameElement;
+          const document = iframe.contentDocument;
+          const canvas = document?.querySelector<HTMLElement>(".docsCanvas");
+          if (!document || !canvas) return Number.POSITIVE_INFINITY;
+          const content = canvas.getBoundingClientRect();
+          return Math.abs(iframe.clientHeight - content.bottom - content.top);
+        }),
+      )
+      .toBeLessThanOrEqual(2);
+    expect(
+      await frame.evaluate((element) => {
+        const iframe = element as HTMLIFrameElement;
+        const document = iframe.contentDocument;
+        return document
+          ? document.documentElement.scrollHeight - iframe.clientHeight
+          : Number.POSITIVE_INFINITY;
+      }),
+    ).toBeLessThanOrEqual(2);
   });
 
   test("supports system appearance and keyboard segmented choices", async ({
@@ -195,6 +234,9 @@ test.describe("PADS public showcase", () => {
       for (const theme of ["light", "dark"]) {
         await chooseAppearance(page, "Theme", theme);
         await expect(page.locator("html")).toHaveAttribute("data-aura-theme", theme);
+        await page
+          .getByRole("link", { name: "Explore components", exact: true })
+          .hover();
         await page.evaluate(async () => {
           await Promise.all(
             document

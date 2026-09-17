@@ -983,7 +983,7 @@
 .storyFrame {
   display: block;
   inline-size: 100%;
-  block-size: calc(var(--aura-size-header) * 9);
+  min-block-size: calc(var(--aura-size-header) * 4);
   background: var(--aura-bg-surface);
   border: var(--aura-border-width-thin) solid var(--aura-border-strong);
   border-radius: var(--aura-radius-xl);
@@ -1517,7 +1517,7 @@
   }
 }
 
-.site a:hover {
+.site a:hover:not([data-variant]) {
   color: var(--aura-brand-content);
 }
 
