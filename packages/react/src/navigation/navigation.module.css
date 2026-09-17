@@ -1,19 +1,45 @@
 .skipLink {
+  --aura-skip-link-offset: calc(var(--aura-size-header) + var(--aura-space-3));
+
   position: fixed;
   z-index: var(--aura-z-toast);
-  inset-block-start: var(--aura-space-3);
+  inset-block-start: var(--aura-skip-link-offset);
   inset-inline-start: var(--aura-space-3);
   padding: var(--aura-space-3) var(--aura-space-4);
   color: var(--aura-brand-on-solid);
   border-radius: var(--aura-radius-md);
   background: var(--aura-brand-action);
   box-shadow: var(--aura-shadow-md);
-  transform: translateY(calc(-100% - var(--aura-space-6)));
+  transform: translateY(
+    calc(-100% - var(--aura-skip-link-offset) - var(--aura-space-6))
+  );
   transition: transform var(--aura-motion-fast) var(--aura-motion-easing-standard);
 }
 
-.skipLink:focus {
+.skipLink:focus-visible {
   transform: translateY(0);
+}
+
+@media (width <= 64rem) {
+  .skipLink {
+    --aura-skip-link-offset: calc(
+      var(--aura-size-header) + var(--aura-size-control) + var(--aura-space-2)
+    );
+  }
+}
+
+@media (width <= 30rem) {
+  .skipLink {
+    --aura-skip-link-offset: calc(var(--aura-size-header) * 2 + var(--aura-space-3));
+  }
+}
+
+@media (width <= 20rem) {
+  .skipLink {
+    --aura-skip-link-offset: calc(
+      var(--aura-size-header) * 2 + var(--aura-size-control) + var(--aura-space-3)
+    );
+  }
 }
 
 .breadcrumbs {

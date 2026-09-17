@@ -11,6 +11,34 @@ test.describe("PADS public showcase", () => {
     await page.goto(site);
   });
 
+  test("uses compact accessible appearance controls and branded browser identity", async ({
+    page,
+  }) => {
+    const appearance = page.getByRole("complementary", {
+      name: "Appearance settings",
+    });
+    await expect(appearance.getByRole("combobox", { name: "Brand" })).toBeVisible();
+    await expect(appearance.getByRole("combobox", { name: "Theme" })).toBeVisible();
+    await expect(appearance.locator("label")).toHaveCount(0);
+    await expect(appearance).not.toContainText("Make it yours");
+    await expect(page.locator('link[rel~="icon"]')).toHaveAttribute(
+      "href",
+      "./pads-favicon.svg",
+    );
+    for (const width of [1280, 375, 320]) {
+      await page.setViewportSize({ width, height: 900 });
+      const skipLink = page.getByRole("link", { name: "Skip to content" });
+      await skipLink.focus();
+      const [headerBox, skipBox] = await Promise.all([
+        page.locator("header").first().boundingBox(),
+        skipLink.boundingBox(),
+      ]);
+      expect(headerBox).not.toBeNull();
+      expect(skipBox).not.toBeNull();
+      expect(skipBox!.y).toBeGreaterThanOrEqual(headerBox!.y + headerBox!.height);
+    }
+  });
+
   test("runs local examples and preserves appearance on reload", async ({ page }) => {
     await page.getByRole("textbox", { name: "Workspace name" }).fill("A new idea");
     await page.getByRole("button", { name: "Create workspace" }).click();

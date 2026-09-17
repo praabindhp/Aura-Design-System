@@ -38,8 +38,10 @@
 
 .header {
   max-inline-size: calc(var(--aura-container-xl) + var(--aura-space-16));
+  min-block-size: var(--aura-size-header);
   margin-inline: auto;
-  padding: var(--aura-space-5) var(--aura-space-8);
+  padding: var(--aura-space-3) var(--aura-space-8);
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -587,27 +589,14 @@
 .appearance {
   display: flex;
   align-items: center;
-  gap: var(--aura-space-3);
-  padding: var(--aura-space-2);
-  background: var(--aura-bg-subtle);
-  border: var(--aura-border-width-thin) solid var(--aura-border-decorative);
-  border-radius: var(--aura-radius-lg);
-}
-
-.appearanceLabel {
-  display: flex;
-  align-items: center;
   gap: var(--aura-space-2);
-  white-space: nowrap;
-  font-size: var(--aura-font-size-caption);
-  color: var(--aura-text-secondary);
+  flex: 0 0 auto;
+  margin-inline-start: auto;
 }
 
 .appearanceControl {
-  display: grid;
-  gap: var(--aura-space-1);
+  min-inline-size: 0;
   font-size: var(--aura-font-size-caption);
-  color: var(--aura-text-muted);
 }
 
 .appearanceControl > :where(div) {
@@ -619,16 +608,15 @@
   inline-size: calc(var(--aura-space-16) * 2 + var(--aura-space-8));
 }
 
-.appearanceControl :where(label) {
-  font-size: var(--aura-font-size-caption);
-  line-height: var(--aura-line-height-compact);
-}
-
 .skipLink {
+  --aura-skip-link-offset: calc(var(--aura-size-header) + var(--aura-space-3));
+
   position: fixed;
-  inset-block-start: var(--aura-space-3);
+  inset-block-start: var(--aura-skip-link-offset);
   inset-inline-start: var(--aura-space-3);
-  transform: translateY(-200%);
+  transform: translateY(
+    calc(-100% - var(--aura-skip-link-offset) - var(--aura-space-6))
+  );
   padding: var(--aura-space-3);
   background: var(--aura-bg-surface);
   border: var(--aura-border-width-strong) solid var(--aura-focus-stroke);
@@ -636,7 +624,7 @@
   z-index: var(--aura-z-toast);
 }
 
-.skipLink:focus {
+.skipLink:focus-visible {
   transform: none;
 }
 
@@ -1261,6 +1249,12 @@
 }
 
 @media (width <= 64rem) {
+  .skipLink {
+    --aura-skip-link-offset: calc(
+      var(--aura-size-header) + var(--aura-size-control) + var(--aura-space-2)
+    );
+  }
+
   .header {
     flex-wrap: wrap;
     gap: var(--aura-space-3);
@@ -1274,9 +1268,7 @@
   }
 
   .appearance {
-    order: 4;
-    inline-size: 100%;
-    justify-content: flex-end;
+    order: 0;
   }
 
   .mosaic {
@@ -1332,7 +1324,12 @@
   }
 
   .header {
-    padding-inline: var(--aura-space-4);
+    padding: var(--aura-space-3) var(--aura-space-4);
+    gap: var(--aura-space-2);
+  }
+
+  .githubLink :where(span) {
+    display: none;
   }
 
   .nav {
@@ -1425,30 +1422,19 @@
   }
 
   .appearance {
-    padding: var(--aura-space-2);
-    justify-content: stretch;
-  }
-
-  .appearanceLabel {
-    display: none;
+    gap: var(--aura-space-2);
   }
 
   .appearanceControl {
-    min-inline-size: 0;
-    flex: 1;
-    display: grid;
-    gap: var(--aura-space-1);
+    flex: 0 1 auto;
   }
 
-  .appearanceControl:first-of-type {
-    flex: 1.5;
+  .appearanceControl > :where(div) {
+    inline-size: calc(var(--aura-space-16) + var(--aura-space-8));
   }
 
-  .appearanceControl > :where(div),
   .appearanceControl:first-of-type > :where(div) {
-    inline-size: 100%;
-    min-inline-size: 0;
-    max-inline-size: 100%;
+    inline-size: calc(var(--aura-space-16) + var(--aura-space-12));
   }
 
   .catalogGrid {
@@ -1482,6 +1468,31 @@
 
   .tokenFlow > :where(div) {
     padding: var(--aura-space-4);
+  }
+}
+
+@media (width <= 30rem) {
+  .skipLink {
+    --aura-skip-link-offset: calc(var(--aura-size-header) * 2 + var(--aura-space-3));
+  }
+
+  .appearance {
+    order: 2;
+    inline-size: 100%;
+    justify-content: flex-end;
+  }
+
+  .nav {
+    gap: 0;
+    justify-content: space-between;
+  }
+}
+
+@media (width <= 20rem) {
+  .skipLink {
+    --aura-skip-link-offset: calc(
+      var(--aura-size-header) * 2 + var(--aura-size-control) + var(--aura-space-3)
+    );
   }
 }
 

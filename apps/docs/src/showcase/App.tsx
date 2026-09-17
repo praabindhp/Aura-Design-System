@@ -35,7 +35,6 @@ import {
   GitFork,
   Layers,
   Plus,
-  Settings2,
   Sparkles,
   Sun,
 } from "lucide-react";
@@ -210,12 +209,9 @@ function Site({
           </a>
         </div>
         <aside className={styles.appearance} aria-label="Appearance settings">
-          <span className={styles.appearanceLabel}>
-            <Settings2 aria-hidden size={15} /> Make it yours
-          </span>
           <div className={styles.appearanceControl}>
-            <label htmlFor="site-brand">Brand</label>
             <DropdownSelect
+              aria-label="Brand"
               id="site-brand"
               value={brand}
               onValueChange={setBrand}
@@ -226,8 +222,8 @@ function Site({
             />
           </div>
           <div className={styles.appearanceControl}>
-            <label htmlFor="site-theme">Theme</label>
             <DropdownSelect
+              aria-label="Theme"
               id="site-theme"
               value={theme}
               onValueChange={setTheme}

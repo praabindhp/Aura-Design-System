@@ -6,6 +6,7 @@ const workspacePath = (relativePath: string): string =>
   fileURLToPath(new URL(relativePath, import.meta.url));
 
 const config: StorybookConfig = {
+  staticDirs: ["../public"],
   stories: [
     "../src/**/*.stories.@(ts|tsx)",
     "../../../packages/react/src/**/*.stories.tsx",
