@@ -493,10 +493,10 @@ export function Preview({ name }: { name: ComponentName }) {
       );
     case "SkipLink":
       return (
-        <>
-          <P.SkipLink href="#showcase-main">Skip to page content</P.SkipLink>
-          <P.Text size="sm">Use Tab to reveal the skip link.</P.Text>
-        </>
+        <P.Stack gap={2}>
+          <P.Badge tone="neutral">Keyboard shortcut</P.Badge>
+          <P.Text size="sm">Moves focus directly to the main content.</P.Text>
+        </P.Stack>
       );
     case "DataTable":
       return (

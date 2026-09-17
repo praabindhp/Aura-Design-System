@@ -65,6 +65,9 @@ test.describe("PADS public showcase", () => {
     await expect(
       page.getByRole("status").filter({ hasText: `${catalog.length} components` }),
     ).toBeVisible();
+    await expect(
+      page.getByRole("link", { name: "Skip to page content", exact: true }),
+    ).toHaveCount(0);
     const search = page.getByRole("searchbox", { name: "Find a component" });
     await search.fill("button");
     await expect(
