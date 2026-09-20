@@ -44,8 +44,8 @@
   "devDependencies": {
     "@praabindh/aura-design-system": "1.0.0",
     "@testing-library/react": "16.3.2",
-    "react": "19.2.8",
-    "react-dom": "19.2.8"
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
   },
   "publishConfig": {
     "access": "restricted"
