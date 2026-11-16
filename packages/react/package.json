@@ -43,7 +43,7 @@
   "dependencies": {
     "@fontsource-variable/lexend": "5.2.8",
     "@praabindh/aura-tokens": "1.0.0",
-    "antd": "6.6.0",
+    "antd": "6.6.2",
     "lucide-react": "1.31.0"
   },
   "peerDependencies": {
